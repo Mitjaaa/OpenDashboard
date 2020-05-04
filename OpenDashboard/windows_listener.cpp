@@ -95,12 +95,7 @@ int Save(int key_stroke)
 	key = MapVirtualKeyExA(key_stroke, MAPVK_VK_TO_CHAR, layout);
 
 	if ((escPressed && key_stroke == ODashboardApp::keycomb2) || (tabPressed && key_stroke == ODashboardApp::keycomb1)) {
-		if (ODashboardApp::getApp()->mainframe->IsShown()) {
-			ODashboardApp::getApp()->mainframe->Hide();
-		}
-		else {
-			ODashboardApp::getApp()->mainframe->Show();
-		}
+		ODashboardApp::getApp()->changeState();
 	}
 
 	return 0;

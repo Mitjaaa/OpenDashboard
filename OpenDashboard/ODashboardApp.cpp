@@ -32,10 +32,32 @@ ODashboardApp* ODashboardApp::getApp()
 bool ODashboardApp::OnInit()
 {
 	ODashboardApp::getApp()->mainframe = new MainFrame();
-	ODashboardApp::getApp()->mainframe->Hide();
+	ODashboardApp::getApp()->widget = new WidgetFrame();
+	ODashboardApp::getApp()->changeState();
 
 	std::thread t1(listenForActivation);
-	t1.detach();	
+	t1.detach();
 
 	return true;
+}
+
+void ODashboardApp::changeState()
+{
+	if (ODashboardApp::getApp()->mainframe->IsShown()) {
+		ODashboardApp::getApp()->mainframe->Hide();
+		ODashboardApp::getApp()->widget->Hide();
+
+		active = false;
+	}
+	else {
+		ODashboardApp::getApp()->mainframe->Show();
+		ODashboardApp::getApp()->widget->Show();
+
+		ODashboardApp::getApp()->widget->Raise();
+		ODashboardApp::getApp()->widget->Raise();
+		ODashboardApp::getApp()->widget->Raise();
+		ODashboardApp::getApp()->widget->Raise();
+
+		active = true;
+	}
 }

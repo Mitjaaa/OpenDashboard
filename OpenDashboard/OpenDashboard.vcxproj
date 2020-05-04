@@ -23,6 +23,7 @@
     <ClCompile Include="MainFrame.cpp" />
     <ClCompile Include="ODashboardApp.cpp" />
     <ClCompile Include="osx_listener.cpp" />
+    <ClCompile Include="WidgetFrame.cpp" />
     <ClCompile Include="windows_listener.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -30,6 +31,7 @@
     <ClInclude Include="MainFrame.h" />
     <ClInclude Include="ODashboardApp.h" />
     <ClInclude Include="osx_listener.h" />
+    <ClInclude Include="WidgetFrame.h" />
     <ClInclude Include="windows_listener.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

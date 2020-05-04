@@ -1,5 +1,6 @@
 #pragma once
 #include "MainFrame.h"
+#include "WidgetFrame.h"
 
 class ODashboardApp : public wxApp
 {
@@ -16,7 +17,11 @@ public:
 	static ODashboardApp* getApp();
 
 public:
+	bool active = false;
+
 	virtual bool OnInit();
+	void changeState();
 	MainFrame* mainframe = nullptr;
+	WidgetFrame* widget = nullptr;
 };
 
