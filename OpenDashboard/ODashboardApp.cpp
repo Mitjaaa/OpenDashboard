@@ -1,10 +1,13 @@
 #include "ODashboardApp.h"
 #include <thread>
 #include "windows_listener.h"
+#include "TestWidget.h"
+#include <list>
 
 wxIMPLEMENT_APP(ODashboardApp);	
 
-ODashboardApp* ODashboardApp::instance = new ODashboardApp();
+ODashboardApp* ODashboardApp::instance = new ODashboardApp(); 
+
 
 ODashboardApp::ODashboardApp()
 {
@@ -19,20 +22,24 @@ void listenForActivation()
 	windows_listener listen = *new windows_listener();
 }
 
-bool active = false;
-
 ODashboardApp* ODashboardApp::getApp()
 {
-	if (instance == NULL)
+	if (instance == NULL) {
 		instance = new ODashboardApp();
-
+	}
+	
 	return instance;
 }
 
 bool ODashboardApp::OnInit()
 {
+	widgets = *new std::vector<WidgetFrame*>();
+	addToVector(widgets, 0);
+	addToVector(widgets, 0);
+	addToVector(widgets, 0);								
+
 	ODashboardApp::getApp()->mainframe = new MainFrame();
-	ODashboardApp::getApp()->widget = new WidgetFrame();
+	//ODashboardApp::getApp()->widget = new TestWidget();
 	ODashboardApp::getApp()->changeState();
 
 	std::thread t1(listenForActivation);
@@ -45,19 +52,35 @@ void ODashboardApp::changeState()
 {
 	if (ODashboardApp::getApp()->mainframe->IsShown()) {
 		ODashboardApp::getApp()->mainframe->Hide();
-		ODashboardApp::getApp()->widget->Hide();
+		//ODashboardApp::getApp()->widget->Hide();
 
-		active = false;
+		unsigned int vSize = widgets.size();
+		for (unsigned int i = 0; i < vSize; i++) {
+			widgets[i]->Hide();
+		}
 	}
 	else {
 		ODashboardApp::getApp()->mainframe->Show();
-		ODashboardApp::getApp()->widget->Show();
-
-		ODashboardApp::getApp()->widget->Raise();
-		ODashboardApp::getApp()->widget->Raise();
-		ODashboardApp::getApp()->widget->Raise();
-		ODashboardApp::getApp()->widget->Raise();
-
-		active = true;
+		//ODashboardApp::getApp()->widget->Show();
+					
+		unsigned int vSize = widgets.size();
+		for (unsigned int i = 0; i < vSize; i++) {
+			if (widgets[i] == NULL) {
+				widgets[i] = new TestWidget();
+			}
+			widgets[i]->Show();
+		}
 	}
 }
+
+void ODashboardApp::addToVector(std::vector<WidgetFrame*> &widgets, int index)
+{
+	if (index == 0) {
+		WidgetFrame* widget = new TestWidget;
+		widgets.push_back(widget);
+	}
+	else if (index == 1) {
+
+	}
+}
+	

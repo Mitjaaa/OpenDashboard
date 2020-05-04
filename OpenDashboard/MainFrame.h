@@ -6,7 +6,7 @@ class MainFrame : public wxFrame
 public:
 	MainFrame();
 	~MainFrame();
-
+		
 	void OnFocus(wxFocusEvent& event);
 
 	DECLARE_EVENT_TABLE();

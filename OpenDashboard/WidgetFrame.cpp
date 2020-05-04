@@ -15,7 +15,7 @@ WidgetFrame::WidgetFrame() : wxFrame(nullptr, 11001, "OpenDashboard")
 
 WidgetFrame::~WidgetFrame() 
 {
-}   
+}
 
 void WidgetFrame::OnLeftDown(wxMouseEvent& event)
 {

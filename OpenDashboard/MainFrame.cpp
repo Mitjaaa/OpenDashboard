@@ -17,8 +17,8 @@ MainFrame::~MainFrame()
 
 void MainFrame::OnFocus(wxFocusEvent& event)
 {
-	if(ODashboardApp::getApp()->widget != nullptr)
-		ODashboardApp::getApp()->widget->Raise();
+	//if(ODashboardApp::getApp()->widget != nullptr)
+	//	ODashboardApp::getApp()->widget->Raise();
 }
 
 void MainFrame::initDashboard()

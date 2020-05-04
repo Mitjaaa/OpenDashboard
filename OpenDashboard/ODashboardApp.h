@@ -1,6 +1,8 @@
 #pragma once
 #include "MainFrame.h"
 #include "WidgetFrame.h"
+#include "TestWidget.h"
+#include <list>
 
 class ODashboardApp : public wxApp
 {
@@ -17,11 +19,14 @@ public:
 	static ODashboardApp* getApp();
 
 public:
-	bool active = false;
-
 	virtual bool OnInit();
+	
 	void changeState();
 	MainFrame* mainframe = nullptr;
-	WidgetFrame* widget = nullptr;
-};
+	
+	std::vector<WidgetFrame*> widgets;
+	void addToVector(std::vector<WidgetFrame*>& widgets, int index);
 
+	//TestWidget* widget = nullptr;
+};
+	
