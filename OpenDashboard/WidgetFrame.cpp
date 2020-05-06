@@ -8,14 +8,17 @@ BEGIN_EVENT_TABLE(WidgetFrame, wxFrame)
     EVT_MOTION(OnMouseMove)
 END_EVENT_TABLE()
 
-WidgetFrame::WidgetFrame() : wxFrame(nullptr, 11001, "OpenDashboard")
+WidgetFrame::WidgetFrame(std::string name) : wxFrame(nullptr, wxID_ANY, name)
 {
 	SetWindowStyle(wxSTAY_ON_TOP | wxFRAME_TOOL_WINDOW);
+    wxStaticText* placeholder = new wxStaticText(this, wxID_ANY, "");
 }
 
-WidgetFrame::~WidgetFrame() 
+WidgetFrame::~WidgetFrame()
 {
 }
+
+
 
 void WidgetFrame::OnLeftDown(wxMouseEvent& event)
 {
@@ -44,5 +47,10 @@ void WidgetFrame::OnLeftUp(wxMouseEvent& event)
         ReleaseMouse();
         capturing = false;
     }
+}
+
+WidgetFrame* WidgetFrame::getWidgetFrame()
+{
+    return this;
 }
 		

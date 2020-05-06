@@ -1,7 +1,7 @@
 #pragma once
 #include "MainFrame.h"
 #include "WidgetFrame.h"
-#include "TestWidget.h"
+#include "TimeWidget.h"
 #include <list>
 
 class ODashboardApp : public wxApp
@@ -25,8 +25,11 @@ public:
 	MainFrame* mainframe = nullptr;
 	
 	std::vector<WidgetFrame*> widgets;
-	void addToVector(std::vector<WidgetFrame*>& widgets, int index);
+	void addToVector(std::vector<WidgetFrame*>& widgets, WidgetFrame* widget);
 
-	//TestWidget* widget = nullptr;
+	/*template<typename Base, typename T>
+	inline bool instanceof(const T* ptr) {
+		return dynamic_cast<const Base*>(ptr) != nullptr;
+	}*/
 };
 	

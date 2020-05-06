@@ -22,8 +22,9 @@
     <ClCompile Include="linux_listener.cpp" />
     <ClCompile Include="MainFrame.cpp" />
     <ClCompile Include="ODashboardApp.cpp" />
+    <ClCompile Include="WidgetText.cpp" />
     <ClCompile Include="osx_listener.cpp" />
-    <ClCompile Include="TestWidget.cpp" />
+    <ClCompile Include="TimeWidget.cpp" />
     <ClCompile Include="WidgetFrame.cpp" />
     <ClCompile Include="windows_listener.cpp" />
   </ItemGroup>
@@ -31,8 +32,9 @@
     <ClInclude Include="linux_listener.h" />
     <ClInclude Include="MainFrame.h" />
     <ClInclude Include="ODashboardApp.h" />
+    <ClInclude Include="WidgetText.h" />
     <ClInclude Include="osx_listener.h" />
-    <ClInclude Include="TestWidget.h" />
+    <ClInclude Include="TimeWidget.h" />
     <ClInclude Include="WidgetFrame.h" />
     <ClInclude Include="windows_listener.h" />
   </ItemGroup>

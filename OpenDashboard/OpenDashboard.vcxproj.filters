@@ -33,7 +33,10 @@
     <ClCompile Include="WidgetFrame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TestWidget.cpp">
+    <ClCompile Include="TimeWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WidgetText.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -56,7 +59,10 @@
     <ClInclude Include="WidgetFrame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TestWidget.h">
+    <ClInclude Include="TimeWidget.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WidgetText.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

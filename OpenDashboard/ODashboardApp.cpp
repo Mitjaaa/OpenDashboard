@@ -1,7 +1,7 @@
 #include "ODashboardApp.h"
 #include <thread>
 #include "windows_listener.h"
-#include "TestWidget.h"
+#include "TimeWidget.h"
 #include <list>
 
 wxIMPLEMENT_APP(ODashboardApp);	
@@ -34,9 +34,7 @@ ODashboardApp* ODashboardApp::getApp()
 bool ODashboardApp::OnInit()
 {
 	widgets = *new std::vector<WidgetFrame*>();
-	addToVector(widgets, 0);
-	addToVector(widgets, 0);
-	addToVector(widgets, 0);								
+	addToVector(widgets, new TimeWidget());
 
 	ODashboardApp::getApp()->mainframe = new MainFrame();
 	//ODashboardApp::getApp()->widget = new TestWidget();
@@ -52,7 +50,6 @@ void ODashboardApp::changeState()
 {
 	if (ODashboardApp::getApp()->mainframe->IsShown()) {
 		ODashboardApp::getApp()->mainframe->Hide();
-		//ODashboardApp::getApp()->widget->Hide();
 
 		unsigned int vSize = widgets.size();
 		for (unsigned int i = 0; i < vSize; i++) {
@@ -61,26 +58,19 @@ void ODashboardApp::changeState()
 	}
 	else {
 		ODashboardApp::getApp()->mainframe->Show();
-		//ODashboardApp::getApp()->widget->Show();
 					
 		unsigned int vSize = widgets.size();
 		for (unsigned int i = 0; i < vSize; i++) {
-			if (widgets[i] == NULL) {
-				widgets[i] = new TestWidget();
-			}
 			widgets[i]->Show();
 		}
 	}
 }
 
-void ODashboardApp::addToVector(std::vector<WidgetFrame*> &widgets, int index)
+void ODashboardApp::addToVector(std::vector<WidgetFrame*> &widgets, WidgetFrame* widget)
 {
-	if (index == 0) {
-		WidgetFrame* widget = new TestWidget;
+	//if (instanceof<WidgetFrame>(widget)) {
+		//WidgetFrame* widget = new TimeWidget;
 		widgets.push_back(widget);
-	}
-	else if (index == 1) {
-
-	}
+	//}
 }
 	
