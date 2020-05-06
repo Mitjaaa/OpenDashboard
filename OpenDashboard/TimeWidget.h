@@ -7,7 +7,7 @@ class TimeWidget : public WidgetFrame
 {
 public:
 
-	TimeWidget();
+	TimeWidget(bool secondsOption);
 	~TimeWidget();
 
     TimeWidget(TimeWidget const&) = delete;
@@ -16,6 +16,7 @@ public:
     TimeWidget& operator = (TimeWidget&&) = delete;
 
     WidgetFrame* parent;
+    bool secondsOption;
     
 private:
     WidgetText* time;

@@ -34,11 +34,11 @@ ODashboardApp* ODashboardApp::getApp()
 bool ODashboardApp::OnInit()
 {
 	widgets = *new std::vector<WidgetFrame*>();
-	addToVector(widgets, new TimeWidget());
+	addWidgets();
 
-	ODashboardApp::getApp()->mainframe = new MainFrame();
+	getApp()->mainframe = new MainFrame();
 	//ODashboardApp::getApp()->widget = new TestWidget();
-	ODashboardApp::getApp()->changeState();
+	getApp()->changeState();
 
 	std::thread t1(listenForActivation);
 	t1.detach();
@@ -48,8 +48,8 @@ bool ODashboardApp::OnInit()
 
 void ODashboardApp::changeState()
 {
-	if (ODashboardApp::getApp()->mainframe->IsShown()) {
-		ODashboardApp::getApp()->mainframe->Hide();
+	if (getApp()->mainframe->IsShown()) {
+		getApp()->mainframe->Hide();
 
 		unsigned int vSize = widgets.size();
 		for (unsigned int i = 0; i < vSize; i++) {
@@ -57,13 +57,18 @@ void ODashboardApp::changeState()
 		}
 	}
 	else {
-		ODashboardApp::getApp()->mainframe->Show();
+		getApp()->mainframe->Show();
 					
 		unsigned int vSize = widgets.size();
 		for (unsigned int i = 0; i < vSize; i++) {
 			widgets[i]->Show();
 		}
 	}
+}
+	
+void ODashboardApp::addWidgets()
+{
+	addToVector(widgets, new TimeWidget(true));
 }
 
 void ODashboardApp::addToVector(std::vector<WidgetFrame*> &widgets, WidgetFrame* widget)

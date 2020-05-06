@@ -22,6 +22,7 @@ public:
 	virtual bool OnInit();
 	
 	void changeState();
+	void addWidgets();
 	MainFrame* mainframe = nullptr;
 	
 	std::vector<WidgetFrame*> widgets;
