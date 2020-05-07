@@ -7,6 +7,7 @@ class TimeWidget : public WidgetFrame
 {
 public:
 
+    TimeWidget();
 	TimeWidget(bool secondsOption);
 	~TimeWidget();
 

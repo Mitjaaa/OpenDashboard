@@ -1,5 +1,6 @@
 #include "TimeWidget.h"
 #include <thread>
+#include "ODashboardApp.h"
 
 void runTime(WidgetText* timeText, bool seconds) {
 	while (1) {
@@ -39,7 +40,9 @@ void runTime(WidgetText* timeText, bool seconds) {
 	}
 }
 
-TimeWidget::TimeWidget(bool seconds	) : WidgetFrame("Time"), parent(this), secondsOption(seconds)
+TimeWidget::TimeWidget() : WidgetFrame("Time", false, 24000) {}
+
+TimeWidget::TimeWidget(bool seconds) : WidgetFrame("Time", true, 24000), parent(this), secondsOption(seconds)
 {
 	time = new WidgetText(this, wxID_ANY, "00:00", wxPoint(23, 5), wxSize(200, 100), 0, "", this->getWidgetFrame());
 	time->SetFont(wxFont(60, 

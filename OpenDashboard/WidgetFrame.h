@@ -4,7 +4,7 @@
 class WidgetFrame : public wxFrame
 {
 public:
-	WidgetFrame(std::string name);
+	WidgetFrame(std::string name, bool useEvents, int idForHandlers);
 	~WidgetFrame();
 	WidgetFrame(WidgetFrame const&) = delete;
 	WidgetFrame(WidgetFrame&&) = delete;
@@ -15,12 +15,15 @@ public:
 	void OnMouseMove(wxMouseEvent& event);
 	void OnLeftUp(wxMouseEvent& event);
 
-	WidgetFrame* getWidgetFrame();
+	WidgetFrame* getWidgetFrame();	
+	std::string widgetName;
+	int handlerID = 0;
 
 	DECLARE_EVENT_TABLE();
 
 private:
 	wxPoint mouseDownPos;
 	bool capturing = false;
+	bool events = false;
 };
 

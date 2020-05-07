@@ -1,8 +1,4 @@
 #include "ODashboardApp.h"
-#include <thread>
-#include "windows_listener.h"
-#include "TimeWidget.h"
-#include <list>
 
 wxIMPLEMENT_APP(ODashboardApp);	
 
@@ -33,12 +29,12 @@ ODashboardApp* ODashboardApp::getApp()
 
 bool ODashboardApp::OnInit()
 {
+	menu = new WidgetMenu();
 	widgets = *new std::vector<WidgetFrame*>();
-	addWidgets();
 
-	getApp()->mainframe = new MainFrame();
-	//ODashboardApp::getApp()->widget = new TestWidget();
-	getApp()->changeState();
+	mainframe = new MainFrame();
+	changeState();
+	addWidgetsToMenu();
 
 	std::thread t1(listenForActivation);
 	t1.detach();
@@ -48,8 +44,9 @@ bool ODashboardApp::OnInit()
 
 void ODashboardApp::changeState()
 {
-	if (getApp()->mainframe->IsShown()) {
-		getApp()->mainframe->Hide();
+	if (mainframe->IsShown()) {
+		mainframe->Hide();
+		menu->Hide();
 
 		unsigned int vSize = widgets.size();
 		for (unsigned int i = 0; i < vSize; i++) {
@@ -57,18 +54,35 @@ void ODashboardApp::changeState()
 		}
 	}
 	else {
-		getApp()->mainframe->Show();
-					
-		unsigned int vSize = widgets.size();
-		for (unsigned int i = 0; i < vSize; i++) {
+		mainframe->Show();
+		menu->Show();
+
+		UpdateWidgets();
+	}
+}
+
+void ODashboardApp::UpdateWidgets() {
+	unsigned int vSize = widgets.size();
+	for (unsigned int i = 0; i < vSize; i++) {
+		if(!widgets[i]->IsShown())
 			widgets[i]->Show();
-		}
 	}
 }
 	
-void ODashboardApp::addWidgets()
+void ODashboardApp::addWidgetsToMenu()
 {
-	addToVector(widgets, new TimeWidget(true));
+	menu->scroller->addToSizer(new TimeWidget(true));
+	//Add more Widgets
+
+	menu->scroller->configureSizer();
+}
+
+void ODashboardApp::createSelectedWidget(wxCommandEvent& event)
+{
+	if (event.GetId() == 24000) addToVector(widgets, new TimeWidget(true));
+	//Add more WidgetIDs				
+
+	UpdateWidgets();
 }
 
 void ODashboardApp::addToVector(std::vector<WidgetFrame*> &widgets, WidgetFrame* widget)

@@ -22,6 +22,8 @@
     <ClCompile Include="linux_listener.cpp" />
     <ClCompile Include="MainFrame.cpp" />
     <ClCompile Include="ODashboardApp.cpp" />
+    <ClCompile Include="Scrollable.cpp" />
+    <ClCompile Include="WidgetMenu.cpp" />
     <ClCompile Include="WidgetText.cpp" />
     <ClCompile Include="osx_listener.cpp" />
     <ClCompile Include="TimeWidget.cpp" />
@@ -32,6 +34,8 @@
     <ClInclude Include="linux_listener.h" />
     <ClInclude Include="MainFrame.h" />
     <ClInclude Include="ODashboardApp.h" />
+    <ClInclude Include="Scrollable.h" />
+    <ClInclude Include="WidgetMenu.h" />
     <ClInclude Include="WidgetText.h" />
     <ClInclude Include="osx_listener.h" />
     <ClInclude Include="TimeWidget.h" />

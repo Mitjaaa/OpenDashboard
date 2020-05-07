@@ -8,10 +8,11 @@ BEGIN_EVENT_TABLE(WidgetFrame, wxFrame)
     EVT_MOTION(OnMouseMove)
 END_EVENT_TABLE()
 
-WidgetFrame::WidgetFrame(std::string name) : wxFrame(nullptr, wxID_ANY, name)
+WidgetFrame::WidgetFrame(std::string name, bool useEvents, int idForHandlers) : wxFrame(nullptr, wxID_ANY, name), events(useEvents), handlerID(idForHandlers)
 {
 	SetWindowStyle(wxSTAY_ON_TOP | wxFRAME_TOOL_WINDOW);
     wxStaticText* placeholder = new wxStaticText(this, wxID_ANY, "");
+    widgetName = name + "Widget";
 }
 
 WidgetFrame::~WidgetFrame()
@@ -22,19 +23,21 @@ WidgetFrame::~WidgetFrame()
 
 void WidgetFrame::OnLeftDown(wxMouseEvent& event)
 {
-    CaptureMouse();
-    capturing = true;
+    if (events) {
+        CaptureMouse();
+        capturing = true;
 
-    const auto eventSource = static_cast<wxWindow*>(event.GetEventObject());
-    const auto screenPosClicked = eventSource->ClientToScreen(event.GetPosition());
-    const auto origin = GetPosition();
+        const auto eventSource = static_cast<wxWindow*>(event.GetEventObject());
+        const auto screenPosClicked = eventSource->ClientToScreen(event.GetPosition());
+        const auto origin = GetPosition();
 
-    mouseDownPos = screenPosClicked - origin;
+        mouseDownPos = screenPosClicked - origin;
+    }
 }
 
 void WidgetFrame::OnMouseMove(wxMouseEvent& event)
 {
-    if (event.Dragging() && event.LeftIsDown())
+    if (event.Dragging() && event.LeftIsDown() && events)
     {
         const auto screenPosCurrent = ClientToScreen(event.GetPosition());
         Move(screenPosCurrent - mouseDownPos);
@@ -43,7 +46,7 @@ void WidgetFrame::OnMouseMove(wxMouseEvent& event)
 
 void WidgetFrame::OnLeftUp(wxMouseEvent& event)
 {
-    if (capturing) {
+    if (capturing && events) {
         ReleaseMouse();
         capturing = false;
     }

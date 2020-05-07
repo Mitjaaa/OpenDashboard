@@ -39,6 +39,12 @@
     <ClCompile Include="WidgetText.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="WidgetMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scrollable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ODashboardApp.h">
@@ -63,6 +69,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="WidgetText.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WidgetMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scrollable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

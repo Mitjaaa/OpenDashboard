@@ -3,6 +3,10 @@
 #include "WidgetFrame.h"
 #include "TimeWidget.h"
 #include <list>
+#include <thread>
+#include "windows_listener.h"
+#include "TimeWidget.h"
+#include "WidgetMenu.h"
 
 class ODashboardApp : public wxApp
 {
@@ -16,15 +20,21 @@ public:
 
 	static const int keycomb1 = 27;
 	static const int keycomb2 = 9;
+
 	static ODashboardApp* getApp();
 
 public:
 	virtual bool OnInit();
 	
 	void changeState();
-	void addWidgets();
+	void addWidgetsToMenu();
+	void UpdateWidgets();
+
+	void createSelectedWidget(wxCommandEvent& event);
+
 	MainFrame* mainframe = nullptr;
-	
+	WidgetMenu* menu = nullptr;
+
 	std::vector<WidgetFrame*> widgets;
 	void addToVector(std::vector<WidgetFrame*>& widgets, WidgetFrame* widget);
 
