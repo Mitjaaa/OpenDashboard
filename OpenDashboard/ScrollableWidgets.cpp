@@ -12,7 +12,7 @@ ScrollableWidgets::~ScrollableWidgets()
 }       
     
 void ScrollableWidgets::addToSizer(WidgetFrame* widget) {
-    wxButton* button = new wxButton(this, widget->handlerID, widget->widgetName, wxDefaultPosition, wxSize(142, 25), wxBORDER_NONE);
+    wxButton*       button = new wxButton(this, widget->handlerID, widget->widgetName, wxDefaultPosition, wxSize(127, 25), wxBORDER_NONE);
     
     button->SetBackgroundColour(wxColour(64, 64, 64));
     button->SetForegroundColour(wxColour(105, 203, 214));

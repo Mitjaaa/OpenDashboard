@@ -73,6 +73,7 @@ void ODashboardApp::addWidgetsToMenu()
 {
 	menu->scroller->addToSizer(new TimeWidget(true));
 	menu->scroller->addToSizer(new ImageWidget());
+
 	//Add more Widgets
 
 	menu->scroller->configureSizer();

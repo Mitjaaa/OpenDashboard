@@ -25,6 +25,7 @@
     <ClCompile Include="ODashboardApp.cpp" />
     <ClCompile Include="ImageWindow.cpp" />
     <ClCompile Include="ScrollableWidgets.cpp" />
+    <ClCompile Include="SettingsWidget.cpp" />
     <ClCompile Include="WidgetMenu.cpp" />
     <ClCompile Include="WidgetText.cpp" />
     <ClCompile Include="osx_listener.cpp" />
@@ -39,6 +40,7 @@
     <ClInclude Include="ODashboardApp.h" />
     <ClInclude Include="ImageWindow.h" />
     <ClInclude Include="ScrollableWidgets.h" />
+    <ClInclude Include="SettingsWidget.h" />
     <ClInclude Include="WidgetMenu.h" />
     <ClInclude Include="WidgetText.h" />
     <ClInclude Include="osx_listener.h" />

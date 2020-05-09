@@ -14,7 +14,8 @@ public:
 	WidgetMenu& operator = (WidgetMenu const&) = delete;
 	WidgetMenu& operator = (WidgetMenu&&) = delete;
 
-	void OnClick(wxCommandEvent& event);
+	void OnClickHide(wxCommandEvent& event);
+	void OnClickSettings(wxCommandEvent& event);
 
 	DECLARE_EVENT_TABLE();
 
@@ -24,6 +25,8 @@ public:
 
 private:
 	wxButton* showhide = nullptr;
+	wxButton* settings = nullptr;
+
 	wxStaticText* widgetsText = nullptr;
 	bool isShown = true;
 

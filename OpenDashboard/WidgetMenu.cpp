@@ -1,9 +1,12 @@
 #include "WidgetMenu.h"
 #include <thread>
 #include "TimeWidget.h"
+#include "SettingsWidget.h"
+#include "ODashboardApp.h"
 
 BEGIN_EVENT_TABLE(WidgetMenu, wxFrame)
-	EVT_BUTTON(24000, OnClick)
+	EVT_BUTTON(25000, OnClickHide)
+	EVT_BUTTON(25001, OnClickSettings)
 END_EVENT_TABLE()
 
 
@@ -25,15 +28,20 @@ WidgetMenu::WidgetMenu() : WidgetFrame("Menu", false, false, wxID_ANY)
 		false));
 	widgetsText->SetForegroundColour(wxColour(39, 232, 167));
 
-	showhide = new wxButton(this, 24000, "hide", wxPoint(0, height-25), wxSize(150, 25), wxBORDER_NONE);
+	showhide = new wxButton(this, 25000, "hide", wxPoint(0, height-25), wxSize(150, 25), wxBORDER_NONE);
 	showhide->SetBackgroundColour(wxColour(64, 64, 64));			
 	showhide->SetForegroundColour(wxColour(39, 232, 167));
 	showhide->SetCursor(wxCURSOR_HAND);
 
-	widgetsPanel = new wxPanel(this, wxID_ANY, wxPoint(0, 20), wxSize(150, height-45));
+	settings = new wxButton(this, 25001, "settings", wxPoint(0, height - 55), wxSize(150, 25), wxBORDER_NONE);
+	settings->SetBackgroundColour(wxColour(64, 64, 64));
+	settings->SetForegroundColour(wxColour(223, 69, 118));
+	settings->SetCursor(wxCURSOR_HAND);
+
+	widgetsPanel = new wxPanel(this, wxID_ANY, wxPoint(0, 20), wxSize(150, height-75));
 
 	wxBoxSizer* sizer = new wxBoxSizer(wxVERTICAL);
-	scroller = new ScrollableWidgets(widgetsPanel, wxPoint(0, 20), wxSize(150, height-65));
+	scroller = new ScrollableWidgets(widgetsPanel, wxPoint(0, 20), wxSize(150, height-95));
 	sizer->Add(scroller, 1);
 	widgetsPanel->SetSizer(sizer);
 }
@@ -42,7 +50,7 @@ WidgetMenu::~WidgetMenu()
 {
 }
 
-void WidgetMenu::OnClick(wxCommandEvent& event)
+void WidgetMenu::OnClickHide(wxCommandEvent& event)
 {
 	int width = wxDisplay().GetGeometry().GetWidth();
 	int height = wxDisplay().GetGeometry().GetHeight();
@@ -71,23 +79,11 @@ void WidgetMenu::OnClick(wxCommandEvent& event)
 	}
 }
 
-/*void WidgetMenu::addToVector(std::vector<wxControl*>& items, wxControl* item)
+void WidgetMenu::OnClickSettings(wxCommandEvent& event)
 {
-	items.push_back(item);
+	SettingsWidget* settings = new SettingsWidget();
+	settings->Show();
+	ODashboardApp::getApp()->addToVector(settings);
 }
 
-void WidgetMenu::hideAllItems()
-{
-	unsigned int vSize = items.size();
-	for (unsigned int i = 0; i < vSize; i++) {
-		items[i]->Hide();
-	}
-}
 
-void WidgetMenu::showAllItems()
-{
-	unsigned int vSize = items.size();
-	for (unsigned int i = 0; i < vSize; i++) {
-		items[i]->Show();
-	}
-}*/
