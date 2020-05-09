@@ -1,4 +1,5 @@
 #include "WidgetFrame.h"
+#include "ODashboardApp.h"
 
 BEGIN_EVENT_TABLE(WidgetFrame, wxFrame)
     EVT_LEFT_DOWN(OnLeftDown)

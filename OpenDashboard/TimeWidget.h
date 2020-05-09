@@ -1,7 +1,8 @@
 #pragma once
+#include "wx/wx.h"
 #include "WidgetFrame.h"
 #include "WidgetText.h"
-
+#include <thread>
 
 class TimeWidget : public WidgetFrame
 {

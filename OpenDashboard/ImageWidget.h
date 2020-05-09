@@ -1,8 +1,6 @@
 #pragma once
 #include "wx/wx.h"
-#include "WidgetFrame.h"
 #include "ImageWindow.h"
-#include "WidgetText.h"
 
 class ImageWidget : public WidgetFrame
 {

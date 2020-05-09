@@ -1,6 +1,4 @@
 #include "TimeWidget.h"
-#include <thread>
-#include "ODashboardApp.h"
 
 void runTime(TimeWidget* widget, WidgetText* timeText, bool seconds) {
 	while (!widget->IsBeingDeleted()) {

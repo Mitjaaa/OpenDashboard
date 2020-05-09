@@ -1,7 +1,5 @@
 #pragma once
 #include "wx/wx.h"
-#include "ODashboardApp.h"
-#include <thread>
 
 class WidgetFrame : public wxFrame
 {
