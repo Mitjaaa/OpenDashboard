@@ -2,7 +2,7 @@
 #include "WidgetFrame.h"
 #include "WidgetText.h"
 #include "wx/display.h"
-#include "Scrollable.h"
+#include "ScrollableWidgets.h"
 
 class WidgetMenu : public WidgetFrame
 {
@@ -20,7 +20,7 @@ public:
 
 public:
 	wxPanel* widgetsPanel = nullptr;
-	Scrollable* scroller = nullptr;
+	ScrollableWidgets* scroller = nullptr;
 
 private:
 	wxButton* showhide = nullptr;

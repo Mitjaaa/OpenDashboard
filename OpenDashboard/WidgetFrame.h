@@ -1,10 +1,12 @@
 #pragma once
 #include "wx/wx.h"
+#include "ODashboardApp.h"
+#include <thread>
 
 class WidgetFrame : public wxFrame
 {
 public:
-	WidgetFrame(std::string name, bool useEvents, int idForHandlers);
+	WidgetFrame(std::string name, bool useEvents, bool showName, int idForHandlers);
 	~WidgetFrame();
 	WidgetFrame(WidgetFrame const&) = delete;
 	WidgetFrame(WidgetFrame&&) = delete;
@@ -15,7 +17,14 @@ public:
 	void OnMouseMove(wxMouseEvent& event);
 	void OnLeftUp(wxMouseEvent& event);
 
-	WidgetFrame* getWidgetFrame();	
+	void UpdateSize(wxSize size, bool useClose);
+	
+	void SetVectorIndex(int index);
+	int vectorIndex = 0;
+
+	WidgetFrame* getWidgetFrame();
+	wxStaticText* wname = nullptr;
+
 	std::string widgetName;
 	int handlerID = 0;
 
@@ -23,6 +32,10 @@ public:
 
 private:
 	wxPoint mouseDownPos;
+	
+	wxButton* close;
+	void OnClose(wxCommandEvent& event);
+
 	bool capturing = false;
 	bool events = false;
 };

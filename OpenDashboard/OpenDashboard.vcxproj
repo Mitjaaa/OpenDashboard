@@ -19,10 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ImageWidget.cpp" />
     <ClCompile Include="linux_listener.cpp" />
     <ClCompile Include="MainFrame.cpp" />
     <ClCompile Include="ODashboardApp.cpp" />
-    <ClCompile Include="Scrollable.cpp" />
+    <ClCompile Include="ImageWindow.cpp" />
+    <ClCompile Include="ScrollableWidgets.cpp" />
     <ClCompile Include="WidgetMenu.cpp" />
     <ClCompile Include="WidgetText.cpp" />
     <ClCompile Include="osx_listener.cpp" />
@@ -31,16 +33,21 @@
     <ClCompile Include="windows_listener.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ImageWidget.h" />
     <ClInclude Include="linux_listener.h" />
     <ClInclude Include="MainFrame.h" />
     <ClInclude Include="ODashboardApp.h" />
-    <ClInclude Include="Scrollable.h" />
+    <ClInclude Include="ImageWindow.h" />
+    <ClInclude Include="ScrollableWidgets.h" />
     <ClInclude Include="WidgetMenu.h" />
     <ClInclude Include="WidgetText.h" />
     <ClInclude Include="osx_listener.h" />
     <ClInclude Include="TimeWidget.h" />
     <ClInclude Include="WidgetFrame.h" />
     <ClInclude Include="windows_listener.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resources\arrow_down.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

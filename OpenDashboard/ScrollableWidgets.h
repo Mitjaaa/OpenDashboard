@@ -2,17 +2,15 @@
 #include "wx/wx.h"
 #include "WidgetFrame.h"
 
-class Scrollable : public wxScrolledWindow
+class ScrollableWidgets : public wxScrolledWindow
 {
 public:
-	Scrollable(wxWindow* parent, wxPoint pos, wxSize size);
-	~Scrollable();
+	ScrollableWidgets(wxWindow* parent, wxPoint pos, wxSize size);
+	~ScrollableWidgets();
 
 	wxBoxSizer* sizer = nullptr;
 	void addToSizer(WidgetFrame* widget);
 	void WidgetSelected(wxCommandEvent& event);
 	void configureSizer();
-
-	WidgetFrame* mframe = nullptr;
 };
 

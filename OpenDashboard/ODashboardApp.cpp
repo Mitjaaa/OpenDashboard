@@ -72,6 +72,7 @@ void ODashboardApp::UpdateWidgets() {
 void ODashboardApp::addWidgetsToMenu()
 {
 	menu->scroller->addToSizer(new TimeWidget(true));
+	menu->scroller->addToSizer(new ImageWidget());
 	//Add more Widgets
 
 	menu->scroller->configureSizer();
@@ -79,17 +80,30 @@ void ODashboardApp::addWidgetsToMenu()
 
 void ODashboardApp::createSelectedWidget(wxCommandEvent& event)
 {
-	if (event.GetId() == 24000) addToVector(widgets, new TimeWidget(true));
+	if (event.GetId() == 24000) addToVector(new TimeWidget(true));
+	if (event.GetId() == 24001) addToVector(new ImageWidget());
 	//Add more WidgetIDs				
 
 	UpdateWidgets();
 }
 
-void ODashboardApp::addToVector(std::vector<WidgetFrame*> &widgets, WidgetFrame* widget)
+void ODashboardApp::addToVector(WidgetFrame* widget)
 {
 	//if (instanceof<WidgetFrame>(widget)) {
 		//WidgetFrame* widget = new TimeWidget;
 		widgets.push_back(widget);
+		widget->SetVectorIndex(widgets.size());
 	//}
+}
+
+void ODashboardApp::removeFromVector(WidgetFrame* widget)
+{
+	unsigned int vSize = widgets.size();
+	for (unsigned int i = 0; i < vSize; i++) {
+		if (widgets[i] == widget) {
+			widgets.erase(widgets.begin() + i);
+			break;	
+		}
+	}
 }
 	

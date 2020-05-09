@@ -42,7 +42,13 @@
     <ClCompile Include="WidgetMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scrollable.cpp">
+    <ClCompile Include="ImageWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ScrollableWidgets.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -74,8 +80,19 @@
     <ClInclude Include="WidgetMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scrollable.h">
+    <ClInclude Include="ImageWidget.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ScrollableWidgets.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resources\arrow_down.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

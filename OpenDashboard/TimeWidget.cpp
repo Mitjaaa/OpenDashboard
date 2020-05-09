@@ -2,8 +2,8 @@
 #include <thread>
 #include "ODashboardApp.h"
 
-void runTime(WidgetText* timeText, bool seconds) {
-	while (1) {
+void runTime(TimeWidget* widget, WidgetText* timeText, bool seconds) {
+	while (!widget->IsBeingDeleted()) {
 		time_t current_time = time(NULL);
 		tm* getTime = localtime(&current_time);
 		std::string realtime = "";
@@ -40,9 +40,9 @@ void runTime(WidgetText* timeText, bool seconds) {
 	}
 }
 
-TimeWidget::TimeWidget() : WidgetFrame("Time", false, 24000) {}
+TimeWidget::TimeWidget() : WidgetFrame("Time", false, false, 24000) {}
 
-TimeWidget::TimeWidget(bool seconds) : WidgetFrame("Time", true, 24000), parent(this), secondsOption(seconds)
+TimeWidget::TimeWidget(bool seconds) : WidgetFrame("Time", true, false, 24000), parent(this), secondsOption(seconds)
 {
 	time = new WidgetText(this, wxID_ANY, "00:00", wxPoint(23, 5), wxSize(200, 100), 0, "", this->getWidgetFrame());
 	time->SetFont(wxFont(60, 
@@ -57,13 +57,13 @@ TimeWidget::TimeWidget(bool seconds) : WidgetFrame("Time", true, 24000), parent(
 	if (seconds) {
 		time->SetPosition(wxPoint(30, 5));
 		time->SetSize(wxSize(300, 100));
-		SetSize(wxSize(375, 100));
+		UpdateSize(wxSize(375, 100), true);
 	}
 	else {
-		SetSize(wxSize(250, 100));
+		UpdateSize(wxSize(250, 100), true);
 	}
 
-	std::thread time(runTime, time, seconds);
+	std::thread time(runTime, this, time, seconds);
 	time.detach();
 }
 

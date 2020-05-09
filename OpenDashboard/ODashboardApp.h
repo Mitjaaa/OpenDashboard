@@ -1,12 +1,13 @@
 #pragma once
 #include "MainFrame.h"
-#include "WidgetFrame.h"
-#include "TimeWidget.h"
-#include <list>
-#include <thread>
-#include "windows_listener.h"
 #include "TimeWidget.h"
 #include "WidgetMenu.h"
+#include "ImageWidget.h"
+
+#include "windows_listener.h"
+
+#include <list>
+#include <thread>
 
 class ODashboardApp : public wxApp
 {
@@ -36,7 +37,8 @@ public:
 	WidgetMenu* menu = nullptr;
 
 	std::vector<WidgetFrame*> widgets;
-	void addToVector(std::vector<WidgetFrame*>& widgets, WidgetFrame* widget);
+	void addToVector(WidgetFrame* widget);
+	void removeFromVector(WidgetFrame* widget);
 
 	/*template<typename Base, typename T>
 	inline bool instanceof(const T* ptr) {

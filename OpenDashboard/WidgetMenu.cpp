@@ -7,13 +7,13 @@ BEGIN_EVENT_TABLE(WidgetMenu, wxFrame)
 END_EVENT_TABLE()
 
 
-WidgetMenu::WidgetMenu() : WidgetFrame("Menu", false, wxID_ANY)
+WidgetMenu::WidgetMenu() : WidgetFrame("Menu", false, false, wxID_ANY)
 {
 	int width = wxDisplay().GetGeometry().GetWidth();
 	int height = wxDisplay().GetGeometry().GetHeight();
 
 	SetWindowStyle(wxSTAY_ON_TOP | wxFRAME_TOOL_WINDOW);
-	SetSize(wxSize(150, height));
+	UpdateSize(wxSize(150, height), false);
 	SetPosition(wxPoint(width-150, 0));
 	SetBackgroundColour(wxColour(46, 46, 46));
 
@@ -33,7 +33,7 @@ WidgetMenu::WidgetMenu() : WidgetFrame("Menu", false, wxID_ANY)
 	widgetsPanel = new wxPanel(this, wxID_ANY, wxPoint(0, 20), wxSize(150, height-45));
 
 	wxBoxSizer* sizer = new wxBoxSizer(wxVERTICAL);
-	scroller = new Scrollable(widgetsPanel, wxPoint(0, 20), wxSize(150, height-65));
+	scroller = new ScrollableWidgets(widgetsPanel, wxPoint(0, 20), wxSize(150, height-65));
 	sizer->Add(scroller, 1);
 	widgetsPanel->SetSizer(sizer);
 }
