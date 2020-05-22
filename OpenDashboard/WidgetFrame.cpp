@@ -11,7 +11,9 @@ WidgetFrame::WidgetFrame(std::string name, bool useEvents, bool showName, int id
 {
 	SetWindowStyle(wxSTAY_ON_TOP | wxFRAME_TOOL_WINDOW);
     wxStaticText* placeholder = new wxStaticText(this, wxID_ANY, "");
+    
     widgetName = name + "Widget";
+    ODashboardApp::getApp()->menuEntries++;
 
     close = new wxButton(this, wxID_ANY, "X", wxDefaultPosition, wxSize(25, 15), wxBORDER_NONE);
     close->SetBackgroundColour(wxColour(34, 34, 34));

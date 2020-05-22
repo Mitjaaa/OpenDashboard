@@ -12,8 +12,13 @@ ScrollableWidgets::~ScrollableWidgets()
 }       
     
 void ScrollableWidgets::addToSizer(WidgetFrame* widget) {
-    wxButton* button = new wxButton(this, widget->handlerID, widget->widgetName, wxDefaultPosition, wxSize(127, 25), wxBORDER_NONE);
-    
+    wxSize btnSize;
+
+    if (ODashboardApp::getApp()->menuEntries > 30) btnSize = wxSize(126, 25);
+    else btnSize = wxSize(142, 25);
+
+    wxButton* button = new wxButton(this, widget->handlerID, widget->widgetName, wxDefaultPosition, btnSize, wxBORDER_NONE);
+
     button->SetBackgroundColour(wxColour(64, 64, 64));
     button->SetForegroundColour(wxColour(105, 203, 214));
     button->SetCursor(wxCURSOR_HAND);

@@ -29,9 +29,10 @@ ODashboardApp* ODashboardApp::getApp()
 
 void ODashboardApp::initWidgetclasses()
 {
-	implementWidget(new TimeWidget(true));
-	implementWidget(new ImageWidget());
+	addToWidgetclasses(new TimeWidget(true));
+	addToWidgetclasses(new ImageWidget());
 
+	implementWidgets();
 	menu->scroller->configureSizer();
 }
 
@@ -77,17 +78,15 @@ void ODashboardApp::UpdateWidgets() {
 	}
 }
 
-void ODashboardApp::implementWidget(WidgetFrame* widget) {
-	menu->scroller->addToSizer(widget);
-	addToWidgetclasses(widget);
+void ODashboardApp::implementWidgets() {		
+	unsigned int vSize = widgetClasses.size();
+	for (unsigned int i = 0; i < vSize; i++) {
+		menu->scroller->addToSizer(widgetClasses[i]);
+	}
 }
 
 void ODashboardApp::createSelectedWidget(wxCommandEvent& event)
 {
-	//if (event.GetId() == 24000) addToWidgets(new TimeWidget(true));
-	//if (event.GetId() == 24001) addToWidgets(new ImageWidget());
-	//Add more WidgetIDs				
-
 	unsigned int vSize = widgetClasses.size();
 	for (unsigned int i = 0; i < vSize; i++) {
 		if (event.GetId() == widgetClasses[i]->handlerID) {
@@ -104,10 +103,6 @@ void ODashboardApp::addToWidgets(WidgetFrame* widget)
 {
 	widgets.push_back(widget);
 	widget->SetVectorIndex(widgets.size());
-
-	WidgetFrame* test = new TimeWidget(true);
-	widgetClasses.push_back(test);
-	implementWidget(test);
 }
 
 void ODashboardApp::addToWidgetclasses(WidgetFrame* widget)

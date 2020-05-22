@@ -31,12 +31,13 @@ public:
 	void changeState();
 	void UpdateWidgets();
 	
-	void implementWidget(WidgetFrame* widget);
+	void implementWidgets();
 
 	void createSelectedWidget(wxCommandEvent& event);
 
 	MainFrame* mainframe = nullptr;
 	WidgetMenu* menu = nullptr;
+	int menuEntries = 0;
 
 	std::vector<WidgetFrame*> widgets;
 	std::vector<WidgetFrame*> widgetClasses;
