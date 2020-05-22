@@ -19,6 +19,8 @@ public:
 
     WidgetFrame* parent;
     bool secondsOption;
+
+    WidgetFrame* createNewObj() override;
     
 private:
     WidgetText* time;

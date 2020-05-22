@@ -27,6 +27,14 @@ ODashboardApp* ODashboardApp::getApp()
 	return instance;
 }
 
+void ODashboardApp::initWidgetclasses()
+{
+	implementWidget(new TimeWidget(true));
+	implementWidget(new ImageWidget());
+
+	menu->scroller->configureSizer();
+}
+
 bool ODashboardApp::OnInit()
 {
 	menu = new WidgetMenu();
@@ -34,11 +42,11 @@ bool ODashboardApp::OnInit()
 
 	mainframe = new MainFrame();
 	changeState();
-	addWidgetsToMenu();
+	initWidgetclasses();
 
 	std::thread t1(listenForActivation);
 	t1.detach();
-
+	
 	return true;
 }
 
@@ -68,36 +76,46 @@ void ODashboardApp::UpdateWidgets() {
 			widgets[i]->Show();
 	}
 }
-	
-void ODashboardApp::addWidgetsToMenu()
-{
-	menu->scroller->addToSizer(new TimeWidget(true));
-	menu->scroller->addToSizer(new ImageWidget());
 
-	//Add more Widgets
-
-	menu->scroller->configureSizer();
+void ODashboardApp::implementWidget(WidgetFrame* widget) {
+	menu->scroller->addToSizer(widget);
+	addToWidgetclasses(widget);
 }
 
 void ODashboardApp::createSelectedWidget(wxCommandEvent& event)
 {
-	if (event.GetId() == 24000) addToVector(new TimeWidget(true));
-	if (event.GetId() == 24001) addToVector(new ImageWidget());
+	//if (event.GetId() == 24000) addToWidgets(new TimeWidget(true));
+	//if (event.GetId() == 24001) addToWidgets(new ImageWidget());
 	//Add more WidgetIDs				
+
+	unsigned int vSize = widgetClasses.size();
+	for (unsigned int i = 0; i < vSize; i++) {
+		if (event.GetId() == widgetClasses[i]->handlerID) {
+			addToWidgets(widgetClasses[i]->createNewObj());
+			break;
+		}
+	}
 
 	UpdateWidgets();
 }
 
-void ODashboardApp::addToVector(WidgetFrame* widget)
+
+void ODashboardApp::addToWidgets(WidgetFrame* widget)
 {
-	//if (instanceof<WidgetFrame>(widget)) {
-		//WidgetFrame* widget = new TimeWidget;
-		widgets.push_back(widget);
-		widget->SetVectorIndex(widgets.size());
-	//}
+	widgets.push_back(widget);
+	widget->SetVectorIndex(widgets.size());
+
+	WidgetFrame* test = new TimeWidget(true);
+	widgetClasses.push_back(test);
+	implementWidget(test);
 }
 
-void ODashboardApp::removeFromVector(WidgetFrame* widget)
+void ODashboardApp::addToWidgetclasses(WidgetFrame* widget)
+{
+	widgetClasses.push_back(widget);
+}
+
+void ODashboardApp::removeFromWidgets(WidgetFrame* widget)
 {
 	unsigned int vSize = widgets.size();
 	for (unsigned int i = 0; i < vSize; i++) {

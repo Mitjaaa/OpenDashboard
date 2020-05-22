@@ -87,9 +87,14 @@ WidgetFrame* WidgetFrame::getWidgetFrame()
     return this;
 }
 
+WidgetFrame* WidgetFrame::createNewObj()
+{
+    return new WidgetFrame("WidgetFrame", false, false, wxID_ANY);
+}
+
 void WidgetFrame::OnClose(wxCommandEvent& event)
 {
-    ODashboardApp::getApp()->removeFromVector(this);
+    ODashboardApp::getApp()->removeFromWidgets(this);
     Destroy();
 }
 		

@@ -25,11 +25,13 @@ public:
 	static ODashboardApp* getApp();
 
 public:
+	void initWidgetclasses();
 	virtual bool OnInit();
-	
+
 	void changeState();
-	void addWidgetsToMenu();
 	void UpdateWidgets();
+	
+	void implementWidget(WidgetFrame* widget);
 
 	void createSelectedWidget(wxCommandEvent& event);
 
@@ -37,12 +39,11 @@ public:
 	WidgetMenu* menu = nullptr;
 
 	std::vector<WidgetFrame*> widgets;
-	void addToVector(WidgetFrame* widget);
-	void removeFromVector(WidgetFrame* widget);
+	std::vector<WidgetFrame*> widgetClasses;
 
-	/*template<typename Base, typename T>
-	inline bool instanceof(const T* ptr) {
-		return dynamic_cast<const Base*>(ptr) != nullptr;
-	}*/
+	void addToWidgets(WidgetFrame* widget);
+	void addToWidgetclasses(WidgetFrame* widget);
+	void removeFromWidgets(WidgetFrame* widget);
+
 };
 	

@@ -21,6 +21,8 @@ public:
 	int vectorIndex = 0;
 
 	WidgetFrame* getWidgetFrame();
+	virtual WidgetFrame* createNewObj();
+
 	wxStaticText* wname = nullptr;
 
 	std::string widgetName;

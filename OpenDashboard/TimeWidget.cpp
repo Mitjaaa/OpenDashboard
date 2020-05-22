@@ -68,3 +68,8 @@ TimeWidget::TimeWidget(bool seconds) : WidgetFrame("Time", true, false, 24000), 
 TimeWidget::~TimeWidget()
 {
 }
+
+WidgetFrame* TimeWidget::createNewObj()
+{
+	return new TimeWidget(true);
+}

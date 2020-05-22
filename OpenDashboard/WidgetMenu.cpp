@@ -83,7 +83,7 @@ void WidgetMenu::OnClickSettings(wxCommandEvent& event)
 {
 	SettingsWidget* settings = new SettingsWidget();
 	settings->Show();
-	ODashboardApp::getApp()->addToVector(settings);
+	ODashboardApp::getApp()->addToWidgets(settings);
 }
 
 

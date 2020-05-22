@@ -135,4 +135,9 @@ void ImageWidget::UpdateWidgetSize(wxSize size, bool isImageShowing)
 		factorText->SetPosition(wxPoint(image->GetPosition().x, (size.y - 35) - 4));
 	}
 }
+
+WidgetFrame* ImageWidget::createNewObj()
+{
+	return new ImageWidget();
+}
 		

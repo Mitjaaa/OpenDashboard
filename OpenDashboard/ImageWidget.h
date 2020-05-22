@@ -23,5 +23,8 @@ private:
 	
 	void OnChoose(wxCommandEvent& event);
 	void UpdateWidgetSize(wxSize size, bool isImageShowing);
+
+
+	WidgetFrame* createNewObj() override;
 };
 
