@@ -1,7 +1,7 @@
 #include "ImageWindow.h"
 
 BEGIN_EVENT_TABLE(ImageWindow, wxWindow)
-    EVT_PAINT(ImageWindow::paintEvent)
+EVT_PAINT(ImageWindow::paintEvent)
 END_EVENT_TABLE()
 
 ImageWindow::ImageWindow(wxWindow* parent, wxPoint pos, wxSize size, WidgetFrame* parentframe) : wxWindow(parent, wxID_ANY, pos, size), parent(parentframe)
@@ -10,9 +10,7 @@ ImageWindow::ImageWindow(wxWindow* parent, wxPoint pos, wxSize size, WidgetFrame
     imgSize = size;
     this->Bind(wxEVT_LEFT_DOWN, &ImageWindow::OnImageClick, this);
 }
-ImageWindow::~ImageWindow()
-{
-}
+ImageWindow::~ImageWindow() {}
 
 void ImageWindow::setImage(wxString file, wxBitmapType format) {
     imgFile = file;

@@ -6,17 +6,15 @@ WidgetText::WidgetText(wxWindow* parent,
     const wxPoint& pos,
     const wxSize& size,
     long style,
-    const wxString& name,
-    WidgetFrame* frame) : wxStaticText(parent, id, label, pos, size, style, name), parentFrame(frame)
+    const wxString& name
+    /*WidgetFrame* frame*/) : wxStaticText(parent, id, label, pos, size, style, name)//, parentFrame(frame)
 {
-	this->Bind(wxEVT_LEFT_DOWN, &WidgetText::OnTextClick, this);
+    this->Bind(wxEVT_LEFT_DOWN, &WidgetText::OnTextClick, this);
 }
 
-WidgetText::~WidgetText()
-{
-}
+WidgetText::~WidgetText() {}
 
 void WidgetText::OnTextClick(wxMouseEvent& event)
 {
-    WidgetText::parentFrame->OnLeftDown(event);
+    //WidgetText::parentFrame->OnLeftDown(event);
 }

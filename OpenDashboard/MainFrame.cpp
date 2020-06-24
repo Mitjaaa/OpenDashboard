@@ -1,9 +1,8 @@
 #include "MainFrame.h"
 #include "ODashboardApp.h"
-#include "WidgetFrame.h"
 
 BEGIN_EVENT_TABLE(MainFrame, wxFrame)
-	EVT_SET_FOCUS(OnFocus)
+EVT_SET_FOCUS(OnFocus)
 END_EVENT_TABLE()
 
 MainFrame::MainFrame() : wxFrame(nullptr, 10001, "OpenDashboard")
@@ -11,10 +10,8 @@ MainFrame::MainFrame() : wxFrame(nullptr, 10001, "OpenDashboard")
 	wxStaticText* placeholder = new wxStaticText(this, wxID_ANY, "");
 	initDashboard();
 }
-		
-MainFrame::~MainFrame()	
-{	
-}
+
+MainFrame::~MainFrame() {}
 
 void MainFrame::OnFocus(wxFocusEvent& event)
 {
@@ -23,7 +20,7 @@ void MainFrame::OnFocus(wxFocusEvent& event)
 		if (ODashboardApp::getApp()->widgets[i] != nullptr)
 			ODashboardApp::getApp()->widgets[i]->Raise();
 	}
-	
+
 	ODashboardApp::getApp()->menu->Raise();
 }
 

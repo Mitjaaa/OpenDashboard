@@ -1,6 +1,5 @@
 #pragma once
-#include "wx/wx.h"
-#include "WidgetFrame.h"
+#include <wx/wx.h>
 
 class WidgetText : public wxStaticText
 {
@@ -11,13 +10,13 @@ public:
         const wxPoint& pos,
         const wxSize& size,
         long style,
-        const wxString& name,
-        WidgetFrame* frame);
-	~WidgetText();
+        const wxString& name
+        /*WidgetFrame* frame*/);
+    ~WidgetText();
 
-	void OnTextClick(wxMouseEvent& event);
+    void OnTextClick(wxMouseEvent& event);
 
 public:
-    WidgetFrame* parentFrame;
+    //WidgetFrame* parentFrame;
 };
 

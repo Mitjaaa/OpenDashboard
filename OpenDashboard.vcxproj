@@ -20,38 +20,42 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ImageWidget.cpp" />
-    <ClCompile Include="ImageWindow.cpp" />
+    <ClCompile Include="linux_listener.cpp" />
     <ClCompile Include="MainFrame.cpp" />
     <ClCompile Include="ODashboardApp.cpp" />
+    <ClCompile Include="ImageWindow.cpp" />
     <ClCompile Include="ScrollableWidgets.cpp" />
     <ClCompile Include="SettingsWidget.cpp" />
-    <ClCompile Include="TimeWidget.cpp" />
-    <ClCompile Include="WidgetFrame.cpp" />
     <ClCompile Include="WidgetMenu.cpp" />
     <ClCompile Include="WidgetText.cpp" />
+    <ClCompile Include="osx_listener.cpp" />
+    <ClCompile Include="TimeWidget.cpp" />
+    <ClCompile Include="WidgetFrame.cpp" />
     <ClCompile Include="windows_listener.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ImageWidget.h" />
-    <ClInclude Include="ImageWindow.h" />
+    <ClInclude Include="linux_listener.h" />
     <ClInclude Include="MainFrame.h" />
     <ClInclude Include="ODashboardApp.h" />
+    <ClInclude Include="ImageWindow.h" />
     <ClInclude Include="ScrollableWidgets.h" />
     <ClInclude Include="SettingsWidget.h" />
-    <ClInclude Include="TimeWidget.h" />
-    <ClInclude Include="WidgetFrame.h" />
     <ClInclude Include="WidgetMenu.h" />
     <ClInclude Include="WidgetText.h" />
+    <ClInclude Include="osx_listener.h" />
+    <ClInclude Include="TimeWidget.h" />
+    <ClInclude Include="WidgetFrame.h" />
     <ClInclude Include="windows_listener.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\Documents\Git\OpenDashboard\OpenDashboard\resources\arrow_down.png" />
+    <Image Include="resources\arrow_down.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{1B9774D3-A981-4B3F-903B-FCAB4FE3D30E}</ProjectGuid>
+    <ProjectGuid>{DFADD226-C081-4B19-AEC2-BFBD238B5EB8}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>OpenDashboardRebuild</RootNamespace>
+    <RootNamespace>OpenDashboard</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

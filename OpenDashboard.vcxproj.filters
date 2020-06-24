@@ -24,28 +24,34 @@
     <ClCompile Include="windows_listener.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ImageWidget.cpp">
+    <ClCompile Include="linux_listener.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ImageWindow.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TimeWidget.cpp">
+    <ClCompile Include="osx_listener.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="WidgetFrame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="WidgetMenu.cpp">
+    <ClCompile Include="TimeWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="WidgetText.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SettingsWidget.cpp">
+    <ClCompile Include="WidgetMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ScrollableWidgets.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SettingsWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -59,7 +65,28 @@
     <ClInclude Include="windows_listener.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="linux_listener.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="osx_listener.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WidgetFrame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeWidget.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WidgetText.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WidgetMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="ImageWidget.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ScrollableWidgets.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ImageWindow.h">
@@ -68,24 +95,9 @@
     <ClInclude Include="SettingsWidget.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ScrollableWidgets.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TimeWidget.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="WidgetFrame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="WidgetMenu.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="WidgetText.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\Documents\Git\OpenDashboard\OpenDashboard\resources\arrow_down.png">
+    <Image Include="resources\arrow_down.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

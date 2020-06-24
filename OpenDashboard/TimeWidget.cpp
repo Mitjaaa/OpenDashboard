@@ -1,4 +1,5 @@
 #include "TimeWidget.h"
+#include <thread>
 
 void runTime(TimeWidget* widget, WidgetText* timeText, bool seconds) {
 	while (!widget->IsBeingDeleted()) {
@@ -42,11 +43,11 @@ TimeWidget::TimeWidget() : WidgetFrame("Time", false, false, 24000) {}
 
 TimeWidget::TimeWidget(bool seconds) : WidgetFrame("Time", true, false, 24000), parent(this), secondsOption(seconds)
 {
-	time = new WidgetText(this, wxID_ANY, "00:00", wxPoint(23, 5), wxSize(200, 100), 0, "", this->getWidgetFrame());
-	time->SetFont(wxFont(60, 
-		wxFONTFAMILY_DEFAULT, 
-		wxFONTSTYLE_NORMAL, 
-		wxFONTWEIGHT_NORMAL, 
+	time = new WidgetText(this, wxID_ANY, "00:00", wxPoint(23, 5), wxSize(200, 100), 0, "");
+	time->SetFont(wxFont(60,
+		wxFONTFAMILY_DEFAULT,
+		wxFONTSTYLE_NORMAL,
+		wxFONTWEIGHT_NORMAL,
 		false));
 	time->SetForegroundColour(wxColour(39, 232, 167));
 
@@ -65,9 +66,7 @@ TimeWidget::TimeWidget(bool seconds) : WidgetFrame("Time", true, false, 24000), 
 	time.detach();
 }
 
-TimeWidget::~TimeWidget()
-{
-}
+TimeWidget::~TimeWidget() {}
 
 WidgetFrame* TimeWidget::createNewObj()
 {

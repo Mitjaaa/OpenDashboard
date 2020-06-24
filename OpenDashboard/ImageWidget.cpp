@@ -1,5 +1,4 @@
 #include "ImageWidget.h"
-#include <wx\artprov.h>
 
 ImageWidget::ImageWidget() : WidgetFrame("Image", true, true, 24001)
 {
@@ -9,10 +8,10 @@ ImageWidget::ImageWidget() : WidgetFrame("Image", true, true, 24001)
 	UpdateSize(wxSize(300, 500), true);
 
 	filepath = new wxTextCtrl(this, wxID_ANY, "Choose a file...", wxPoint(20, 30), wxSize(200, 15), wxBORDER_NONE);
-	filepath->SetBackgroundColour(wxColour(74, 74, 74));	
+	filepath->SetBackgroundColour(wxColour(74, 74, 74));
 	filepath->SetForegroundColour(wxColour(39, 232, 167));
 	filepath->SetEditable(false);
-	
+
 	chooseFile = new wxButton(this, wxID_ANY, "Choose", wxPoint(230, 30), wxSize(50, 15), wxBORDER_NONE);
 	chooseFile->SetBackgroundColour(wxColour(74, 74, 74));
 	chooseFile->SetForegroundColour(wxColour(39, 232, 167));
@@ -29,9 +28,7 @@ ImageWidget::ImageWidget() : WidgetFrame("Image", true, true, 24001)
 	openFileDialog = new wxFileDialog(this, _("Open Image..."), "", "", "PNG files (*.png)|*.png|JPG files (*jpg)|*jpg", wxFD_OPEN);
 }
 
-ImageWidget::~ImageWidget()
-{
-}
+ImageWidget::~ImageWidget() {}
 
 void ImageWidget::OnChoose(wxCommandEvent& event)
 {
@@ -45,14 +42,14 @@ void ImageWidget::OnChoose(wxCommandEvent& event)
 	if (factorText == nullptr) {
 		factorText = new wxStaticText(this, wxID_ANY, "Factor:", wxPoint(10, 10), wxSize(40, 20));
 	}
-	
+
 	factorText->SetForegroundColour(wxColour(191, 191, 191));
 
 	if (!sizer->IsEmpty()) sizer->Clear();
 
 	if (openFileDialog->GetPath().EndsWith(".png")) {
-		image->setImage(openFileDialog->GetPath(), wxBITMAP_TYPE_PNG );
-		image->Update();		
+		image->setImage(openFileDialog->GetPath(), wxBITMAP_TYPE_PNG);
+		image->Update();
 		image->Refresh();
 
 		x = image->GetSize().x + image->GetPosition().x * 2;
@@ -72,10 +69,10 @@ void ImageWidget::OnChoose(wxCommandEvent& event)
 		UpdateWidgetSize(wxSize(x, y + 35), false);
 		Refresh();
 	}
-	
+
 	factorText->SetPosition(wxPoint(image->GetPosition().x, y - 4));
 
-	if(factorChoice != nullptr)		factorChoice->Destroy();
+	if (factorChoice != nullptr)		factorChoice->Destroy();
 	factorChoice = new wxChoice(this, wxID_ANY, wxPoint(image->GetPosition().x + factorText->GetSize().x, y - 5), wxSize(20, 20));
 
 	factorChoice->AppendString("");
@@ -83,7 +80,7 @@ void ImageWidget::OnChoose(wxCommandEvent& event)
 	factorChoice->AppendString("2");
 	factorChoice->AppendString("3");
 	factorChoice->AppendString("4");
-	
+
 	factorChoice->Bind(wxEVT_PAINT, [=](wxPaintEvent& event) {
 
 		wxPaintDC dc(factorChoice);
@@ -106,8 +103,8 @@ void ImageWidget::OnChoose(wxCommandEvent& event)
 		else {
 			dc.DrawBitmap(resized, rect.GetWidth() - 16, (rect.GetHeight() / 2) - 2, false);
 		}
-	});
-	
+		});
+
 	factorChoice->Bind(wxEVT_CHOICE, [=](wxCommandEvent& event) {
 		const wxString sel = factorChoice->GetStringSelection();
 		if (!sel.IsEmpty()) {
@@ -121,7 +118,7 @@ void ImageWidget::OnChoose(wxCommandEvent& event)
 
 			UpdateWidgetSize(wxSize(x, y + 35), true);
 		}
-	});	
+		});
 }
 
 void ImageWidget::UpdateWidgetSize(wxSize size, bool isImageShowing)
@@ -140,4 +137,3 @@ WidgetFrame* ImageWidget::createNewObj()
 {
 	return new ImageWidget();
 }
-		

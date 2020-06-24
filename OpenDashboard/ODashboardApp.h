@@ -1,13 +1,12 @@
 #pragma once
-#include "MainFrame.h"
-#include "TimeWidget.h"
-#include "WidgetMenu.h"
-#include "ImageWidget.h"
-
-#include "windows_listener.h"
-
-#include <list>
+#include <wx/wx.h>
 #include <thread>
+#include "MainFrame.h"
+#include "WidgetMenu.h"
+#include "WidgetFrame.h"
+#include "TimeWidget.h"
+#include "ImageWidget.h"
+#include "windows_listener.h"
 
 class ODashboardApp : public wxApp
 {
@@ -25,17 +24,17 @@ public:
 	static ODashboardApp* getApp();
 
 public:
+
+	MainFrame* mainframe = nullptr;
 	void initWidgetclasses();
 	virtual bool OnInit();
 
 	void changeState();
-	void UpdateWidgets();
-	
-	void implementWidgets();
 
+	void UpdateWidgets();
+	void implementWidgets();
 	void createSelectedWidget(wxCommandEvent& event);
 
-	MainFrame* mainframe = nullptr;
 	WidgetMenu* menu = nullptr;
 	int menuEntries = 0;
 
@@ -47,4 +46,4 @@ public:
 	void removeFromWidgets(WidgetFrame* widget);
 
 };
-	
+

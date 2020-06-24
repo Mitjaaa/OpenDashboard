@@ -1,12 +1,10 @@
 #include "WidgetMenu.h"
-#include <thread>
-#include "TimeWidget.h"
 #include "SettingsWidget.h"
 #include "ODashboardApp.h"
 
 BEGIN_EVENT_TABLE(WidgetMenu, wxFrame)
-	EVT_BUTTON(25000, OnClickHide)
-	EVT_BUTTON(25001, OnClickSettings)
+EVT_BUTTON(25000, OnClickHide)
+EVT_BUTTON(25001, OnClickSettings)
 END_EVENT_TABLE()
 
 
@@ -17,7 +15,7 @@ WidgetMenu::WidgetMenu() : WidgetFrame("Menu", false, false, wxID_ANY)
 
 	SetWindowStyle(wxSTAY_ON_TOP | wxFRAME_TOOL_WINDOW);
 	UpdateSize(wxSize(150, height), false);
-	SetPosition(wxPoint(width-150, 0));
+	SetPosition(wxPoint(width - 150, 0));
 	SetBackgroundColour(wxColour(46, 46, 46));
 
 	widgetsText = new wxStaticText(this, wxID_ANY, "Widgets", wxPoint(40, 5), wxSize(20, 20));
@@ -28,8 +26,8 @@ WidgetMenu::WidgetMenu() : WidgetFrame("Menu", false, false, wxID_ANY)
 		false));
 	widgetsText->SetForegroundColour(wxColour(39, 232, 167));
 
-	showhide = new wxButton(this, 25000, "hide", wxPoint(0, height-25), wxSize(150, 25), wxBORDER_NONE);
-	showhide->SetBackgroundColour(wxColour(64, 64, 64));			
+	showhide = new wxButton(this, 25000, "hide", wxPoint(0, height - 25), wxSize(150, 25), wxBORDER_NONE);
+	showhide->SetBackgroundColour(wxColour(64, 64, 64));
 	showhide->SetForegroundColour(wxColour(39, 232, 167));
 	showhide->SetCursor(wxCURSOR_HAND);
 
@@ -38,17 +36,15 @@ WidgetMenu::WidgetMenu() : WidgetFrame("Menu", false, false, wxID_ANY)
 	settings->SetForegroundColour(wxColour(223, 69, 118));
 	settings->SetCursor(wxCURSOR_HAND);
 
-	widgetsPanel = new wxPanel(this, wxID_ANY, wxPoint(0, 20), wxSize(150, height-75));
+	widgetsPanel = new wxPanel(this, wxID_ANY, wxPoint(0, 20), wxSize(150, height - 75));
 
 	wxBoxSizer* sizer = new wxBoxSizer(wxVERTICAL);
-	scroller = new ScrollableWidgets(widgetsPanel, wxPoint(0, 20), wxSize(150, height-95));
+	scroller = new ScrollableWidgets(widgetsPanel, wxPoint(0, 20), wxSize(150, height - 95));
 	sizer->Add(scroller, 1);
 	widgetsPanel->SetSizer(sizer);
 }
-	
-WidgetMenu::~WidgetMenu()		
-{
-}
+
+WidgetMenu::~WidgetMenu() {}
 
 void WidgetMenu::OnClickHide(wxCommandEvent& event)
 {
@@ -56,10 +52,8 @@ void WidgetMenu::OnClickHide(wxCommandEvent& event)
 	int height = wxDisplay().GetGeometry().GetHeight();
 
 	if (isShown) {
-		//hideAllItems();
-
 		widgetsText->SetPosition(wxPoint(40, 50));
-		showhide->SetPosition(wxPoint(0, 0));	
+		showhide->SetPosition(wxPoint(0, 0));
 		showhide->SetLabel("show");
 		SetSize(wxSize(150, 25));
 		SetPosition(wxPoint(width - 150, height - 25));
@@ -67,8 +61,6 @@ void WidgetMenu::OnClickHide(wxCommandEvent& event)
 		isShown = false;
 	}
 	else {
-		//showAllItems();	
-
 		widgetsText->SetPosition(wxPoint(40, 5));
 		showhide->SetPosition(wxPoint(0, height - 25));
 		showhide->SetLabel("hide");
@@ -79,11 +71,33 @@ void WidgetMenu::OnClickHide(wxCommandEvent& event)
 	}
 }
 
+bool settingsActive = false;
+SettingsWidget* settingsWidget = nullptr;
+
 void WidgetMenu::OnClickSettings(wxCommandEvent& event)
 {
-	SettingsWidget* settings = new SettingsWidget();
-	settings->Show();
-	ODashboardApp::getApp()->addToWidgets(settings);
+	if (settingsActive) {
+		settingsWidget->Hide();
+		settings->SetForegroundColour(wxColour(223, 69, 118));
+
+		//save settings
+
+		ODashboardApp::getApp()->removeFromWidgets(settingsWidget);
+		settingsWidget->Destroy();
+
+		settingsActive = false;
+	}
+	else {
+		settingsWidget = new SettingsWidget();
+		settings->SetForegroundColour(wxColour(223, 140, 157));
+
+		//load settings
+
+		settingsWidget->Show();
+		ODashboardApp::getApp()->addToWidgets(settingsWidget);
+
+		settingsActive = true;
+	}
 }
 
 

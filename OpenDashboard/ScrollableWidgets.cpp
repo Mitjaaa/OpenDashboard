@@ -1,5 +1,4 @@
-#include "ScrollableWidgets.h"
-#include "WidgetMenu.h"
+        #include "ScrollableWidgets.h"
 #include "ODashboardApp.h"
 
 ScrollableWidgets::ScrollableWidgets(wxWindow* parent, wxPoint pos, wxSize size) : wxScrolledWindow(parent, wxID_ANY, pos, size)
@@ -7,10 +6,8 @@ ScrollableWidgets::ScrollableWidgets(wxWindow* parent, wxPoint pos, wxSize size)
     sizer = new wxBoxSizer(wxVERTICAL);
 }
 
-ScrollableWidgets::~ScrollableWidgets()
-{
-}       
-    
+ScrollableWidgets::~ScrollableWidgets() {}
+
 void ScrollableWidgets::addToSizer(WidgetFrame* widget) {
     wxSize btnSize;
 

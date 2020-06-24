@@ -1,7 +1,6 @@
 #pragma once
-#include "WidgetFrame.h"
-#include "WidgetText.h"
-#include "wx/display.h"
+#include <wx/wx.h>
+#include <wx/display.h>
 #include "ScrollableWidgets.h"
 
 class WidgetMenu : public WidgetFrame
@@ -29,12 +28,6 @@ private:
 
 	wxStaticText* widgetsText = nullptr;
 	bool isShown = true;
-
-	/*		std::vector<wxControl*> items;
-	void addToVector(std::vector<wxControl*>& items, wxControl* item);
-
-	void hideAllItems();
-	void showAllItems();*/
 
 	wxStaticText* placeholder = new wxStaticText(this, wxID_ANY, "");
 };

@@ -1,5 +1,6 @@
 #pragma once
-#include "wx/wx.h"
+#include <wx/wx.h>
+#include "WidgetFrame.h"
 #include "ImageWindow.h"
 
 class ImageWidget : public WidgetFrame
@@ -20,7 +21,7 @@ private:
 
 	wxImage arrow_down;
 	wxFileDialog* openFileDialog;
-	
+
 	void OnChoose(wxCommandEvent& event);
 	void UpdateWidgetSize(wxSize size, bool isImageShowing);
 

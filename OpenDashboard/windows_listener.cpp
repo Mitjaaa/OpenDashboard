@@ -8,6 +8,9 @@
 #include <tchar.h>
 #include "ODashboardApp.h"
 
+//Credit:
+
+
 // defines whether the window is visible or not
 // should be solved with makefile, not in this file
 #define visible // (visible / invisible)
@@ -108,6 +111,4 @@ windows_listener::windows_listener()
 	while (GetMessage(&msg, NULL, 0, 0)) {}
 }
 
-windows_listener::~windows_listener()
-{
-}
+windows_listener::~windows_listener() {}
