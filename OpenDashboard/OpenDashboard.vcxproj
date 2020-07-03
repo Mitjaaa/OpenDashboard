@@ -19,10 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ClrPicker.cpp" />
+    <ClCompile Include="Colors.cpp" />
     <ClCompile Include="ImageWidget.cpp" />
     <ClCompile Include="ImageWindow.cpp" />
     <ClCompile Include="MainFrame.cpp" />
     <ClCompile Include="ODashboardApp.cpp" />
+    <ClCompile Include="PickWidget.cpp" />
     <ClCompile Include="ScrollableWidgets.cpp" />
     <ClCompile Include="SettingsWidget.cpp" />
     <ClCompile Include="TimeWidget.cpp" />
@@ -32,10 +35,13 @@
     <ClCompile Include="windows_listener.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ClrPicker.h" />
+    <ClInclude Include="Colors.h" />
     <ClInclude Include="ImageWidget.h" />
     <ClInclude Include="ImageWindow.h" />
     <ClInclude Include="MainFrame.h" />
     <ClInclude Include="ODashboardApp.h" />
+    <ClInclude Include="PickWidget.h" />
     <ClInclude Include="ScrollableWidgets.h" />
     <ClInclude Include="SettingsWidget.h" />
     <ClInclude Include="TimeWidget.h" />

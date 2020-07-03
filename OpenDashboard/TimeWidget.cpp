@@ -1,5 +1,6 @@
 #include "TimeWidget.h"
 #include <thread>
+#include "Colors.h"
 
 void runTime(TimeWidget* widget, WidgetText* timeText, bool seconds) {
 	while (!widget->IsBeingDeleted()) {
@@ -49,9 +50,9 @@ TimeWidget::TimeWidget(bool seconds) : WidgetFrame("Time", true, false, 24000), 
 		wxFONTSTYLE_NORMAL,
 		wxFONTWEIGHT_NORMAL,
 		false));
-	time->SetForegroundColour(wxColour(39, 232, 167));
+	time->SetForegroundColour(textcolor1);
 
-	SetBackgroundColour(wxColour(46, 46, 46));
+	SetBackgroundColour(color3);
 
 	if (seconds) {
 		time->SetPosition(wxPoint(30, 5));

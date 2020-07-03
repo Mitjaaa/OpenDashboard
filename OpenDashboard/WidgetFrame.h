@@ -35,7 +35,7 @@ private:
 	wxPoint mouseDownPos;
 
 	wxButton* close;
-	void OnClose(wxCommandEvent& event);
+	virtual void OnClose(wxCommandEvent& event);
 
 	bool capturing = false;
 	bool events = false;

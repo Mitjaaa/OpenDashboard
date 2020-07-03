@@ -10,13 +10,11 @@ public:
         const wxPoint& pos,
         const wxSize& size,
         long style,
-        const wxString& name
-        /*WidgetFrame* frame*/);
+        const wxString& name);
     ~WidgetText();
 
     void OnTextClick(wxMouseEvent& event);
 
 public:
-    //WidgetFrame* parentFrame;
 };
 

@@ -9,7 +9,19 @@ public:
 	SettingsWidget();
 	~SettingsWidget();
 
+	void resetPosition();
+
+	// settings
+	bool autostart = false;
+
+
 private:
-	wxPanel* settingsPanel = nullptr;
+	void OnClose(wxCommandEvent& event) override;
+	wxPanel* settChoosePanel = nullptr;
+	wxPanel* settingPanel = nullptr;
+
+	void OnAppBtn(wxCommandEvent& event);
+	void OnColorsBtn(wxCommandEvent& event);
+	void OnKeybBtn(wxCommandEvent& event);
 };
 

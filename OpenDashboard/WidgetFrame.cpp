@@ -1,5 +1,6 @@
-#include "WidgetFrame.h"
+ #include "WidgetFrame.h"
 #include "ODashboardApp.h"
+#include "Colors.h"
 
 BEGIN_EVENT_TABLE(WidgetFrame, wxFrame)
 EVT_LEFT_DOWN(OnLeftDown)
@@ -16,8 +17,8 @@ WidgetFrame::WidgetFrame(std::string name, bool useEvents, bool showName, int id
     ODashboardApp::getApp()->menuEntries++;
 
     close = new wxButton(this, wxID_ANY, "X", wxDefaultPosition, wxSize(25, 15), wxBORDER_NONE);
-    close->SetBackgroundColour(wxColour(34, 34, 34));
-    close->SetForegroundColour(wxColour(255, 66, 66));
+    close->SetBackgroundColour(color4);
+    close->SetForegroundColour(closecolor);
     close->SetCursor(wxCURSOR_HAND);
     close->Bind(wxEVT_BUTTON, &WidgetFrame::OnClose, this);
     
@@ -29,7 +30,7 @@ WidgetFrame::WidgetFrame(std::string name, bool useEvents, bool showName, int id
             wxFONTSTYLE_NORMAL,
             wxFONTWEIGHT_NORMAL,
             false));
-        wname->SetForegroundColour(wxColour(105, 203, 214));
+        wname->SetForegroundColour(textcolor2);
     }
 }
 
@@ -46,13 +47,12 @@ void WidgetFrame::OnLeftDown(wxMouseEvent& event)
         const auto origin = GetPosition();
 
         mouseDownPos = screenPosClicked - origin;
-
     }
 }
 
 void WidgetFrame::OnMouseMove(wxMouseEvent& event)
 {
-    if (event.Dragging() && event.LeftIsDown() && events)
+    if (event.Dragging() && event.LeftIsDown() && capturing && events)
     {
         const auto screenPosCurrent = ClientToScreen(event.GetPosition());
         Move(screenPosCurrent - mouseDownPos);

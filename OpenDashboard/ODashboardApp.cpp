@@ -1,4 +1,5 @@
 #include "ODashboardApp.h"
+#include "Colors.h"
 
 wxIMPLEMENT_APP(ODashboardApp);
 
@@ -38,6 +39,8 @@ bool ODashboardApp::OnInit()
 	mainframe = new MainFrame();
 	changeState();
 	initWidgetclasses();
+
+	loadColours();
 
 	std::thread t1(listenForActivation);
 	t1.detach();

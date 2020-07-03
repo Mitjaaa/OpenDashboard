@@ -1,6 +1,7 @@
 #include "WidgetMenu.h"
 #include "SettingsWidget.h"
 #include "ODashboardApp.h"
+#include "Colors.h"
 
 BEGIN_EVENT_TABLE(WidgetMenu, wxFrame)
 EVT_BUTTON(25000, OnClickHide)
@@ -16,7 +17,7 @@ WidgetMenu::WidgetMenu() : WidgetFrame("Menu", false, false, wxID_ANY)
 	SetWindowStyle(wxSTAY_ON_TOP | wxFRAME_TOOL_WINDOW);
 	UpdateSize(wxSize(150, height), false);
 	SetPosition(wxPoint(width - 150, 0));
-	SetBackgroundColour(wxColour(46, 46, 46));
+	SetBackgroundColour(color3);
 
 	widgetsText = new wxStaticText(this, wxID_ANY, "Widgets", wxPoint(40, 5), wxSize(20, 20));
 	widgetsText->SetFont(wxFont(15,
@@ -24,16 +25,16 @@ WidgetMenu::WidgetMenu() : WidgetFrame("Menu", false, false, wxID_ANY)
 		wxFONTSTYLE_NORMAL,
 		wxFONTWEIGHT_NORMAL,
 		false));
-	widgetsText->SetForegroundColour(wxColour(39, 232, 167));
+	widgetsText->SetForegroundColour(textcolor1);
 
 	showhide = new wxButton(this, 25000, "hide", wxPoint(0, height - 25), wxSize(150, 25), wxBORDER_NONE);
-	showhide->SetBackgroundColour(wxColour(64, 64, 64));
-	showhide->SetForegroundColour(wxColour(39, 232, 167));
+	showhide->SetBackgroundColour(color1);
+	showhide->SetForegroundColour(textcolor1);
 	showhide->SetCursor(wxCURSOR_HAND);
 
 	settings = new wxButton(this, 25001, "settings", wxPoint(0, height - 55), wxSize(150, 25), wxBORDER_NONE);
-	settings->SetBackgroundColour(wxColour(64, 64, 64));
-	settings->SetForegroundColour(wxColour(223, 69, 118));
+	settings->SetBackgroundColour(color1);
+	settings->SetForegroundColour(textcolor3);
 	settings->SetCursor(wxCURSOR_HAND);
 
 	widgetsPanel = new wxPanel(this, wxID_ANY, wxPoint(0, 20), wxSize(150, height - 75));
@@ -78,26 +79,28 @@ void WidgetMenu::OnClickSettings(wxCommandEvent& event)
 {
 	if (settingsActive) {
 		settingsWidget->Hide();
-		settings->SetForegroundColour(wxColour(223, 69, 118));
+		settings->SetForegroundColour(textcolor3);
 
 		//save settings
 
-		ODashboardApp::getApp()->removeFromWidgets(settingsWidget);
-		settingsWidget->Destroy();
 
-		settingsActive = false;
+		ODashboardApp::getApp()->removeFromWidgets(settingsWidget);
 	}
 	else {
-		settingsWidget = new SettingsWidget();
-		settings->SetForegroundColour(wxColour(223, 140, 157));
+		if(settingsWidget == nullptr) 
+			settingsWidget = new SettingsWidget();
 
+		settings->SetForegroundColour(textcolor4);
+
+		
 		//load settings
-
+		
+		settingsWidget->resetPosition();
 		settingsWidget->Show();
 		ODashboardApp::getApp()->addToWidgets(settingsWidget);
-
-		settingsActive = true;
 	}
+
+	settingsActive = !settingsActive;
 }
 
 

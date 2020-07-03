@@ -1,20 +1,21 @@
 #include "ImageWidget.h"
+#include "Colors.h"
 
 ImageWidget::ImageWidget() : WidgetFrame("Image", true, true, 24001)
 {
 	wxInitAllImageHandlers();
 
-	SetBackgroundColour(wxColour(46, 46, 46));
+	SetBackgroundColour(color3);
 	UpdateSize(wxSize(300, 500), true);
 
 	filepath = new wxTextCtrl(this, wxID_ANY, "Choose a file...", wxPoint(20, 30), wxSize(200, 15), wxBORDER_NONE);
-	filepath->SetBackgroundColour(wxColour(74, 74, 74));
-	filepath->SetForegroundColour(wxColour(39, 232, 167));
+	filepath->SetBackgroundColour(color1);
+	filepath->SetForegroundColour(textcolor1);
 	filepath->SetEditable(false);
 
 	chooseFile = new wxButton(this, wxID_ANY, "Choose", wxPoint(230, 30), wxSize(50, 15), wxBORDER_NONE);
-	chooseFile->SetBackgroundColour(wxColour(74, 74, 74));
-	chooseFile->SetForegroundColour(wxColour(39, 232, 167));
+	chooseFile->SetBackgroundColour(color1);
+	chooseFile->SetForegroundColour(textcolor1);
 	chooseFile->SetCursor(wxCURSOR_HAND);
 
 	chooseFile->Bind(wxEVT_BUTTON, &ImageWidget::OnChoose, this);
@@ -43,7 +44,7 @@ void ImageWidget::OnChoose(wxCommandEvent& event)
 		factorText = new wxStaticText(this, wxID_ANY, "Factor:", wxPoint(10, 10), wxSize(40, 20));
 	}
 
-	factorText->SetForegroundColour(wxColour(191, 191, 191));
+	factorText->SetForegroundColour(textcolor5);
 
 	if (!sizer->IsEmpty()) sizer->Clear();
 
@@ -72,7 +73,7 @@ void ImageWidget::OnChoose(wxCommandEvent& event)
 
 	factorText->SetPosition(wxPoint(image->GetPosition().x, y - 4));
 
-	if (factorChoice != nullptr)		factorChoice->Destroy();
+	if (factorChoice != nullptr) factorChoice->Destroy();
 	factorChoice = new wxChoice(this, wxID_ANY, wxPoint(image->GetPosition().x + factorText->GetSize().x, y - 5), wxSize(20, 20));
 
 	factorChoice->AppendString("");
@@ -87,8 +88,8 @@ void ImageWidget::OnChoose(wxCommandEvent& event)
 		wxRect rect(0, 0, dc.GetSize().GetWidth(), dc.GetSize().GetHeight());
 		const wxString sel = factorChoice->GetStringSelection();
 
-		dc.SetBrush(wxBrush(wxColour(46, 46, 46)));
-		dc.SetPen(wxPen(wxColour(66, 66, 66)));
+		dc.SetBrush(wxBrush(color3));
+		dc.SetPen(wxPen(color1));
 		dc.DrawRectangle(rect);
 
 		wxBitmap resized;
@@ -97,7 +98,7 @@ void ImageWidget::OnChoose(wxCommandEvent& event)
 
 		if (!sel.IsEmpty())
 		{
-			dc.SetTextForeground(wxColour(191, 191, 191));
+			dc.SetTextForeground(color5);
 			dc.DrawLabel(sel, rect, wxALIGN_CENTER);
 		}
 		else {
