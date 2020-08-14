@@ -21,6 +21,8 @@
   <ItemGroup>
     <ClCompile Include="ClrPicker.cpp" />
     <ClCompile Include="Colors.cpp" />
+    <ClCompile Include="globalColour.cpp" />
+    <ClCompile Include="Globals.cpp" />
     <ClCompile Include="ImageWidget.cpp" />
     <ClCompile Include="ImageWindow.cpp" />
     <ClCompile Include="MainFrame.cpp" />
@@ -37,6 +39,8 @@
   <ItemGroup>
     <ClInclude Include="ClrPicker.h" />
     <ClInclude Include="Colors.h" />
+    <ClInclude Include="globalColour.h" />
+    <ClInclude Include="Globals.h" />
     <ClInclude Include="ImageWidget.h" />
     <ClInclude Include="ImageWindow.h" />
     <ClInclude Include="MainFrame.h" />

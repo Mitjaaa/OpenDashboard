@@ -17,6 +17,7 @@ public:
 	void OnLeftUp(wxMouseEvent& event);
 
 	void UpdateSize(wxSize size, bool useClose);
+	void RefreshForeBackground(wxColour newClr);
 
 	void SetVectorIndex(int index);
 	int vectorIndex = 0;

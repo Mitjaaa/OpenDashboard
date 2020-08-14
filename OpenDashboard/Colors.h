@@ -1,20 +1,35 @@
 #pragma once
 #include <wx/wx.h>
+#include "globalColour.h"
+#include <fstream>
 
-extern wxColour textcolor1; //neon-green
-extern wxColour textcolor2; //light blue	
-extern wxColour textcolor3; //pink
-extern wxColour textcolor4; //light pink
-extern wxColour textcolor5; //very light grey
-extern wxColour textcolor6; //white
+extern globalColour oldColour; //temp colour to have the changed colour saved
 
-extern wxColour closecolor; //red		
+//section 1: text
+extern std::vector<globalColour> textcolours;
 
-extern wxColour color1; //light grey 1
-extern wxColour color2; //light grey 2
-extern wxColour color3; //grey
-extern wxColour color4; //dark grey
-extern wxColour color5; //very light grey
+extern globalColour textcolor1; //neon-green
+extern globalColour textcolor2; //light blue	
+extern globalColour textcolor3; //pink
+extern globalColour textcolor4; //light pink
+extern globalColour textcolor5; //very light grey
+extern globalColour textcolor6; //white
+extern globalColour textcolor7; //red
 
-extern void loadColours();
 
+//section 2: background
+extern std::vector<globalColour> bgcolours;
+
+extern globalColour bgcolor1; //light grey 1
+extern globalColour bgcolor2; //light grey 2
+extern globalColour bgcolor3; //grey
+extern globalColour bgcolor4; //dark grey
+
+
+//section 3: general colours for all purposes
+extern std::vector<globalColour> colours;
+
+extern globalColour color1; //very light grey
+extern globalColour backgroundColour;
+
+extern void initColours();

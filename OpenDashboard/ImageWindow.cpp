@@ -1,4 +1,5 @@
 #include "ImageWindow.h"
+#include "Colors.h"
 
 BEGIN_EVENT_TABLE(ImageWindow, wxWindow)
 EVT_PAINT(ImageWindow::paintEvent)
@@ -6,7 +7,7 @@ END_EVENT_TABLE()
 
 ImageWindow::ImageWindow(wxWindow* parent, wxPoint pos, wxSize size, WidgetFrame* parentframe) : wxWindow(parent, wxID_ANY, pos, size), parent(parentframe)
 {
-    SetBackgroundColour(wxColour(46, 46, 46));
+    SetBackgroundColour(bgcolours[2].clr);
     imgSize = size;
     this->Bind(wxEVT_LEFT_DOWN, &ImageWindow::OnImageClick, this);
 }
@@ -42,12 +43,6 @@ void ImageWindow::paintEvent(wxPaintEvent& evt)
 
 void ImageWindow::resize() {
     SetSize(wxSize(image.GetSize().x / factor, image.GetSize().y / factor));
-
-    OutputDebugStringA("B ");
-    OutputDebugStringA(std::to_string(GetSize().x).c_str());
-    OutputDebugStringA(" ");
-    OutputDebugStringA(std::to_string(GetSize().y).c_str());
-    OutputDebugStringA("\n");
 }
 
 void ImageWindow::OnImageClick(wxMouseEvent& event)

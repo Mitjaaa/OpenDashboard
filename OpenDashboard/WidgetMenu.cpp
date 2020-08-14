@@ -17,7 +17,7 @@ WidgetMenu::WidgetMenu() : WidgetFrame("Menu", false, false, wxID_ANY)
 	SetWindowStyle(wxSTAY_ON_TOP | wxFRAME_TOOL_WINDOW);
 	UpdateSize(wxSize(150, height), false);
 	SetPosition(wxPoint(width - 150, 0));
-	SetBackgroundColour(color3);
+	SetBackgroundColour(bgcolours[2].clr);
 
 	widgetsText = new wxStaticText(this, wxID_ANY, "Widgets", wxPoint(40, 5), wxSize(20, 20));
 	widgetsText->SetFont(wxFont(15,
@@ -25,19 +25,19 @@ WidgetMenu::WidgetMenu() : WidgetFrame("Menu", false, false, wxID_ANY)
 		wxFONTSTYLE_NORMAL,
 		wxFONTWEIGHT_NORMAL,
 		false));
-	widgetsText->SetForegroundColour(textcolor1);
+	widgetsText->SetForegroundColour(textcolours[0].clr);
 
 	showhide = new wxButton(this, 25000, "hide", wxPoint(0, height - 25), wxSize(150, 25), wxBORDER_NONE);
-	showhide->SetBackgroundColour(color1);
-	showhide->SetForegroundColour(textcolor1);
+	showhide->SetBackgroundColour(bgcolours[0].clr);
+	showhide->SetForegroundColour(textcolours[0].clr);
 	showhide->SetCursor(wxCURSOR_HAND);
 
 	settings = new wxButton(this, 25001, "settings", wxPoint(0, height - 55), wxSize(150, 25), wxBORDER_NONE);
-	settings->SetBackgroundColour(color1);
-	settings->SetForegroundColour(textcolor3);
+	settings->SetBackgroundColour(bgcolours[0].clr);
+	settings->SetForegroundColour(textcolours[2].clr);
 	settings->SetCursor(wxCURSOR_HAND);
 
-	widgetsPanel = new wxPanel(this, wxID_ANY, wxPoint(0, 20), wxSize(150, height - 75));
+	widgetsPanel = new wxPanel(this, wxID_ANY, wxPoint(0, 28), wxSize(150, height - 83));
 
 	wxBoxSizer* sizer = new wxBoxSizer(wxVERTICAL);
 	scroller = new ScrollableWidgets(widgetsPanel, wxPoint(0, 20), wxSize(150, height - 95));
@@ -73,34 +73,23 @@ void WidgetMenu::OnClickHide(wxCommandEvent& event)
 }
 
 bool settingsActive = false;
-SettingsWidget* settingsWidget = nullptr;
+///SettingsWidget* settingsWidget = nullptr;
 
 void WidgetMenu::OnClickSettings(wxCommandEvent& event)
-{
+{	
 	if (settingsActive) {
-		settingsWidget->Hide();
-		settings->SetForegroundColour(textcolor3);
+		ODashboardApp::getApp()->settings->Hide();
+		settings->SetForegroundColour(textcolours[2].clr);
 
-		//save settings
-
-
-		ODashboardApp::getApp()->removeFromWidgets(settingsWidget);
+		ODashboardApp::getApp()->removeFromWidgets(ODashboardApp::getApp()->settings);
 	}
 	else {
-		if(settingsWidget == nullptr) 
-			settingsWidget = new SettingsWidget();
-
-		settings->SetForegroundColour(textcolor4);
-
+		settings->SetForegroundColour(textcolours[3].clr);
 		
-		//load settings
-		
-		settingsWidget->resetPosition();
-		settingsWidget->Show();
-		ODashboardApp::getApp()->addToWidgets(settingsWidget);
+		ODashboardApp::getApp()->settings->resetPosition();
+		ODashboardApp::getApp()->settings->Show();
+		ODashboardApp::getApp()->addToWidgets(ODashboardApp::getApp()->settings);
 	}
 
 	settingsActive = !settingsActive;
 }
-
-

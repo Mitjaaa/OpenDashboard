@@ -6,6 +6,7 @@
 #include "WidgetFrame.h"
 #include "TimeWidget.h"
 #include "ImageWidget.h"
+#include "SettingsWidget.h"
 #include "windows_listener.h"
 
 class ODashboardApp : public wxApp
@@ -30,12 +31,13 @@ public:
 	virtual bool OnInit();
 
 	void changeState();
-
+	void RefreshWidgetsWithColours(wxColour newColour, bool setts);
 	void UpdateWidgets();
 	void implementWidgets();
 	void createSelectedWidget(wxCommandEvent& event);
 
 	WidgetMenu* menu = nullptr;
+	SettingsWidget* settings = nullptr;
 	int menuEntries = 0;
 
 	std::vector<WidgetFrame*> widgets;

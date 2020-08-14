@@ -3,6 +3,11 @@
 
 wxIMPLEMENT_APP(ODashboardApp);
 
+template<typename Base, typename T>
+inline bool instanceof(const T*) {
+	return std::is_base_of<Base, T>::value;
+}
+
 ODashboardApp* ODashboardApp::instance = new ODashboardApp();
 
 ODashboardApp::ODashboardApp() {}
@@ -22,7 +27,7 @@ ODashboardApp* ODashboardApp::getApp()
 	return instance;
 }
 
-void ODashboardApp::initWidgetclasses()
+void ODashboardApp::initWidgetclasses()	
 {
 	addToWidgetclasses(new TimeWidget(true));
 	addToWidgetclasses(new ImageWidget());
@@ -33,6 +38,8 @@ void ODashboardApp::initWidgetclasses()
 
 bool ODashboardApp::OnInit()
 {
+	initColours();
+
 	menu = new WidgetMenu();
 	widgets = *new std::vector<WidgetFrame*>();
 
@@ -40,7 +47,7 @@ bool ODashboardApp::OnInit()
 	changeState();
 	initWidgetclasses();
 
-	loadColours();
+	settings = new SettingsWidget();
 
 	std::thread t1(listenForActivation);
 	t1.detach();
@@ -67,6 +74,35 @@ void ODashboardApp::changeState()
 	}
 }
 
+
+void ODashboardApp::RefreshWidgetsWithColours(wxColour newColour, bool setts) {
+	unsigned int vSize = widgets.size();
+	for (unsigned int i = 0; i < vSize; i++) {
+
+		unsigned int cSize = widgets[i]->GetChildren().size();
+		for (unsigned int j = 0; j < cSize; j++) {
+			((WidgetFrame*)widgets[i]->GetChildren()[j])->RefreshForeBackground(newColour);
+		}
+
+		widgets[i]->wname->SetForegroundColour(textcolours[1].clr);
+		widgets[i]->Refresh();
+		widgets[i]->Update();
+	}
+		
+	unsigned int cSize = menu->GetChildren().size();	
+	for (unsigned int j = 0; j < cSize; j++) {
+		((WidgetFrame*)menu->GetChildren()[j])->RefreshForeBackground(newColour);
+	}
+
+	menu->RefreshForeBackground(newColour);
+	menu->Refresh();
+	menu->Update();
+
+	if (setts) {
+		settings->RefreshPanels(newColour);
+		settings->RefreshForeBackground(newColour);
+	}
+}
 
 void ODashboardApp::UpdateWidgets() {
 	unsigned int vSize = widgets.size();

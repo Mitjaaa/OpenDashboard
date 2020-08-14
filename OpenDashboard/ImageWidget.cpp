@@ -1,21 +1,22 @@
 #include "ImageWidget.h"
 #include "Colors.h"
+#include "ODashboardApp.h"
 
 ImageWidget::ImageWidget() : WidgetFrame("Image", true, true, 24001)
 {
 	wxInitAllImageHandlers();
 
-	SetBackgroundColour(color3);
+	SetBackgroundColour(bgcolours[2].clr);
 	UpdateSize(wxSize(300, 500), true);
 
 	filepath = new wxTextCtrl(this, wxID_ANY, "Choose a file...", wxPoint(20, 30), wxSize(200, 15), wxBORDER_NONE);
-	filepath->SetBackgroundColour(color1);
-	filepath->SetForegroundColour(textcolor1);
+	filepath->SetBackgroundColour(bgcolours[0].clr);
+	filepath->SetForegroundColour(textcolours[0].clr);
 	filepath->SetEditable(false);
 
 	chooseFile = new wxButton(this, wxID_ANY, "Choose", wxPoint(230, 30), wxSize(50, 15), wxBORDER_NONE);
-	chooseFile->SetBackgroundColour(color1);
-	chooseFile->SetForegroundColour(textcolor1);
+	chooseFile->SetBackgroundColour(bgcolours[0].clr);
+	chooseFile->SetForegroundColour(textcolours[0].clr);
 	chooseFile->SetCursor(wxCURSOR_HAND);
 
 	chooseFile->Bind(wxEVT_BUTTON, &ImageWidget::OnChoose, this);
@@ -25,7 +26,7 @@ ImageWidget::ImageWidget() : WidgetFrame("Image", true, true, 24001)
 	image = new ImageWindow(this, wxPoint(20, 70), /*wxSize(260, 400)*/ wxSize(800, 800), this);
 	sizer = new wxBoxSizer(wxHORIZONTAL);
 
-	arrow_down.LoadFile("Resources\\arrow_down.png", wxBITMAP_TYPE_PNG);
+	arrow_down.LoadFile("Resources/arrow_down.png", wxBITMAP_TYPE_PNG);
 	openFileDialog = new wxFileDialog(this, _("Open Image..."), "", "", "PNG files (*.png)|*.png|JPG files (*jpg)|*jpg", wxFD_OPEN);
 }
 
@@ -33,8 +34,12 @@ ImageWidget::~ImageWidget() {}
 
 void ImageWidget::OnChoose(wxCommandEvent& event)
 {
-	if (openFileDialog->ShowModal() == wxID_CANCEL)
-		return;
+	ODashboardApp::getApp()->menu->Freeze();
+
+	if (openFileDialog->ShowModal() == wxID_CANCEL) {
+		ODashboardApp::getApp()->menu->Thaw();
+		return;	
+	}
 
 	filepath->SetLabel(openFileDialog->GetPath());
 	int x = 0;
@@ -44,7 +49,7 @@ void ImageWidget::OnChoose(wxCommandEvent& event)
 		factorText = new wxStaticText(this, wxID_ANY, "Factor:", wxPoint(10, 10), wxSize(40, 20));
 	}
 
-	factorText->SetForegroundColour(textcolor5);
+	factorText->SetForegroundColour(textcolours[4].clr);
 
 	if (!sizer->IsEmpty()) sizer->Clear();
 
@@ -88,8 +93,8 @@ void ImageWidget::OnChoose(wxCommandEvent& event)
 		wxRect rect(0, 0, dc.GetSize().GetWidth(), dc.GetSize().GetHeight());
 		const wxString sel = factorChoice->GetStringSelection();
 
-		dc.SetBrush(wxBrush(color3));
-		dc.SetPen(wxPen(color1));
+		dc.SetBrush(wxBrush(bgcolours[2].clr));
+		dc.SetPen(wxPen(colours[0].clr));
 		dc.DrawRectangle(rect);
 
 		wxBitmap resized;
@@ -98,13 +103,13 @@ void ImageWidget::OnChoose(wxCommandEvent& event)
 
 		if (!sel.IsEmpty())
 		{
-			dc.SetTextForeground(color5);
+			dc.SetTextForeground(colours[0].clr);
 			dc.DrawLabel(sel, rect, wxALIGN_CENTER);
 		}
 		else {
 			dc.DrawBitmap(resized, rect.GetWidth() - 16, (rect.GetHeight() / 2) - 2, false);
 		}
-		});
+	});
 
 	factorChoice->Bind(wxEVT_CHOICE, [=](wxCommandEvent& event) {
 		const wxString sel = factorChoice->GetStringSelection();
@@ -119,7 +124,8 @@ void ImageWidget::OnChoose(wxCommandEvent& event)
 
 			UpdateWidgetSize(wxSize(x, y + 35), true);
 		}
-		});
+	});
+	ODashboardApp::getApp()->menu->Thaw();
 }
 
 void ImageWidget::UpdateWidgetSize(wxSize size, bool isImageShowing)

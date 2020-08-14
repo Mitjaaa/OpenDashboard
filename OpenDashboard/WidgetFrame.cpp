@@ -17,8 +17,8 @@ WidgetFrame::WidgetFrame(std::string name, bool useEvents, bool showName, int id
     ODashboardApp::getApp()->menuEntries++;
 
     close = new wxButton(this, wxID_ANY, "X", wxDefaultPosition, wxSize(25, 15), wxBORDER_NONE);
-    close->SetBackgroundColour(color4);
-    close->SetForegroundColour(closecolor);
+    close->SetBackgroundColour(bgcolours[3].clr);
+    close->SetForegroundColour(textcolours[6].clr);
     close->SetCursor(wxCURSOR_HAND);
     close->Bind(wxEVT_BUTTON, &WidgetFrame::OnClose, this);
     
@@ -30,7 +30,7 @@ WidgetFrame::WidgetFrame(std::string name, bool useEvents, bool showName, int id
             wxFONTSTYLE_NORMAL,
             wxFONTWEIGHT_NORMAL,
             false));
-        wname->SetForegroundColour(textcolor2);
+        wname->SetForegroundColour(textcolours[1].clr);
     }
 }
 
@@ -73,6 +73,19 @@ void WidgetFrame::UpdateSize(wxSize size, bool useClose)
     if (useClose) close->SetPosition(wxPoint(size.x - 27, 0));
     else close->Hide();
 }
+
+void WidgetFrame::RefreshForeBackground(wxColour newClr)
+{
+    if (oldColour.clr == GetForegroundColour())
+        SetForegroundColour(newClr);
+
+    if (oldColour.clr == GetBackgroundColour())
+        SetBackgroundColour(newClr);
+
+    Refresh();
+    Update();
+}
+
 
 void WidgetFrame::SetVectorIndex(int index)
 {

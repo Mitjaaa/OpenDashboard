@@ -30,7 +30,7 @@ void runTime(TimeWidget* widget, WidgetText* timeText, bool seconds) {
 			if (int(std::to_string(getTime->tm_sec).length()) == 1) {
 				realtime += "0" + std::to_string(getTime->tm_sec);
 			}
-			else {
+			else {	
 				realtime += std::to_string(getTime->tm_sec);
 			}
 		}
@@ -50,9 +50,9 @@ TimeWidget::TimeWidget(bool seconds) : WidgetFrame("Time", true, false, 24000), 
 		wxFONTSTYLE_NORMAL,
 		wxFONTWEIGHT_NORMAL,
 		false));
-	time->SetForegroundColour(textcolor1);
+	time->SetForegroundColour(textcolours[0].clr);
 
-	SetBackgroundColour(color3);
+	SetBackgroundColour(bgcolours[2].clr);
 
 	if (seconds) {
 		time->SetPosition(wxPoint(30, 5));

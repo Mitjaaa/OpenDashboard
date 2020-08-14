@@ -1,5 +1,6 @@
 #include "MainFrame.h"
 #include "ODashboardApp.h"
+#include "Colors.h"
 
 BEGIN_EVENT_TABLE(MainFrame, wxFrame)
 EVT_SET_FOCUS(OnFocus)
@@ -30,8 +31,6 @@ void MainFrame::initDashboard()
 
 	long styleflag = GetWindowStyle();
 	SetWindowStyle(styleflag | wxSTAY_ON_TOP | wxFRAME_TOOL_WINDOW);
-
-	wxColour cl = wxTransparentColour;
-	SetBackgroundColour(cl);
+	SetBackgroundColour(colours[1].clr);
 	SetTransparent(127.5);
 }

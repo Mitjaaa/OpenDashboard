@@ -16,17 +16,19 @@ public:
 	void OnClickHide(wxCommandEvent& event);
 	void OnClickSettings(wxCommandEvent& event);
 
+	
+
 	DECLARE_EVENT_TABLE();
 
 public:
 	wxPanel* widgetsPanel = nullptr;
 	ScrollableWidgets* scroller = nullptr;
+	wxStaticText* widgetsText = nullptr;
 
 private:
 	wxButton* showhide = nullptr;
 	wxButton* settings = nullptr;
 
-	wxStaticText* widgetsText = nullptr;
 	bool isShown = true;
 
 	wxStaticText* placeholder = new wxStaticText(this, wxID_ANY, "");
