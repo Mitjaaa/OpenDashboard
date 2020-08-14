@@ -120,11 +120,23 @@ void SettingsWidget::saveSettings()
 		settings << "## App-Settings ##\n";
 		settings << "autostart=" + std::to_string(autostart) + "\n";
 		settings << "transparency=" + std::to_string(transparency).substr(0, std::to_string(transparency).length() - 5) + "\n";
+
+
+		std::string clr = "main-background-color=3|1=";
+		if (colours[1].clr.GetAsString().ToStdString() == "black")
+			clr += "0 0 0";
+		else if (colours[1].clr.GetAsString().ToStdString() == "white")
+			clr += "255 255 255";
+		else {
+			clr += colours[1].clr.GetAsString().erase(0, 4).ToStdString();
+			clr = clr.substr(0, clr.length() - 1) + "\n";
+		}
 		
-		std::string clr = "main-background-color=3|1=" + colours[1].clr.GetAsString().erase(0, 4).ToStdString();
-		clr = clr.substr(0, clr.length() - 1) + "\n";
+				
 		clr.erase(remove(clr.begin(), clr.end(), ','), clr.end());
 		settings << clr + "\n\n\n";
+
+		OutputDebugStringA(clr.c_str());
 				
 		settings << "## Colors ##\n";
 		settings << "# textcolours #\n";

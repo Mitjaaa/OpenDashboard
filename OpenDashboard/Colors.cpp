@@ -75,6 +75,7 @@ void initColours() {
 						atoi(split(splitted[2], " ")[1].c_str()),
 						atoi(split(splitted[2], " ")[2].c_str())
 					);
+
 				}
 				else if(splitted[0] == "color")
 				{

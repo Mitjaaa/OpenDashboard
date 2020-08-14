@@ -31,6 +31,7 @@ void ODashboardApp::initWidgetclasses()
 {
 	addToWidgetclasses(new TimeWidget(true));
 	addToWidgetclasses(new ImageWidget());
+	addToWidgetclasses(new CalculatorWidget());
 
 	implementWidgets();
 	menu->scroller->configureSizer();

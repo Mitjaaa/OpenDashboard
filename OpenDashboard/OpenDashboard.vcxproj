@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CalculatorWidget.cpp" />
     <ClCompile Include="ClrPicker.cpp" />
     <ClCompile Include="Colors.cpp" />
     <ClCompile Include="globalColour.cpp" />
@@ -37,6 +38,7 @@
     <ClCompile Include="windows_listener.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CalculatorWidget.h" />
     <ClInclude Include="ClrPicker.h" />
     <ClInclude Include="Colors.h" />
     <ClInclude Include="globalColour.h" />

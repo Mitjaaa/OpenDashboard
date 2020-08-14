@@ -8,6 +8,7 @@
 #include "ImageWidget.h"
 #include "SettingsWidget.h"
 #include "windows_listener.h"
+#include "CalculatorWidget.h"
 
 class ODashboardApp : public wxApp
 {
